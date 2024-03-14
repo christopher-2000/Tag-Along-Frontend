@@ -1,0 +1,45 @@
+
+.input-field {
+    position: relative; /* Set the position context for absolutely positioned icon */
+    display: flex;
+    border: 3px solid darkblue;
+    border-radius: 10px;
+    padding: 4%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .input-field:hover {
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+  }
+  
+  .input-field input{
+    flex: 1;
+    border: none; /* Removes the border */
+    outline: none; /* Removes the focus outline */
+    color: black;
+    background-color: white; /* Optional: makes the background transparent */
+    margin-left: 5%;
+    height: 100%;
+    font-size: medium;
+  }
+
+
+  
+  /* Icon styles for the email input field 
+  
+  .input-field input[type="fullname"] {
+    background-image: url('/email.png');
+  }
+  
+  
+  .input-field input[type="email"] {
+    background-image: url('/email.png');
+  }
+  
+  /* Icon styles for the password input field 
+  .input-field input[type="password"] {
+    background-image: url('/Password.png');
+  }
+  */

@@ -1,12 +1,25 @@
-import { Link } from "react-router-dom"
+// Welcome.jsx
 
+import React from 'react';
+import { Link } from "react-router-dom";
+import '../App.css'; 
+import ImageContainer from '../components/ImageContainer';
+import './styles/welcome.css'
 
-export default function Welcome(){
+const Welcome = () => {
     return (
-        <>
-        <h1>Welcome to Tag Along</h1>
-        <Link to={'/login'}> Login </Link> <br />
-        <Link to={'/signup'}> SignUp </Link>
-        </>
-    )
-}
+        <div className="container">
+            <ImageContainer />
+            <div className="sub-container">
+                <h1>TAG ALONG..</h1>
+                <h2>Affordable rides & Make new friends</h2>
+                
+                    <Link to="/login" className="login-button">LOGIN</Link>
+                    <Link to="/signup" className="signup-button">SIGNUP</Link>
+                
+            </div>
+        </div>
+    );
+};
+
+export default Welcome;

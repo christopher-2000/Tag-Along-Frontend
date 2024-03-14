@@ -1,42 +1,52 @@
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  flex: 1; /* Take up remaining space */
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sub-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Centers children horizontally */
+  flex: 1;
+  padding: 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+
+button {
+  display: block; /* The button appears on a new line */
+  width: 100%; /* Full width of the container */
+  margin-bottom: 1rem; /* Space below the button */
+  padding: 10px; /* Padding inside the button */
+  background-color: #17477F; /* Button color */
+  color: white; /* Text color inside the button */
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded corners for the button */
+  cursor: pointer; /* Pointer cursor on hover */
 }
 
-.card {
-  padding: 2em;
+button:hover {
+  background-color: #15395b; /* Darker shade for hover effect */
 }
 
-.read-the-docs {
-  color: #888;
+.form-box {
+  border: 3px solid rgb(64, 64, 64); /* Border color */
+  border-radius: 30px; /* Rounded corners for the box */
+  padding: 2rem; /* Space inside the box */
+  width: 100%; /* Full width of the container */
+  max-width: 400px; /* Max width of the form box */
+  margin: auto; /* Center the box in the parent container */
+  background-color: #ffffff; /* Background color for the form box */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow to the box */
 }

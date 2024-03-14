@@ -1,0 +1,35 @@
+.Signup-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    flex: 1; /* Take up remaining space */
+  }
+
+  .Signup-image {
+    width: 100%; /* Each image takes full width of the container */
+    height: auto; /* Keep the image's aspect ratio */
+  }
+  
+  .Signup-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Centers children horizontally */
+    flex: 1;
+    padding: 1rem;
+  }
+  
+  .Signup-side h1 {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 2rem;
+    color: #17477F;
+    font-weight: 800;
+  }
+  
+  .Signup-side h2 {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 2rem;
+  }

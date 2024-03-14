@@ -1,0 +1,29 @@
+.login-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    flex: 1; /* Take up remaining space */
+  }
+
+  .login-image {
+    width: 100%; /* Each image takes full width of the container */
+    height: auto; /* Keep the image's aspect ratio */
+  }
+  
+  
+  
+  .login-side h1 {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 2rem;
+    color: #17477F;
+    font-weight: 800;
+  }
+  
+  .login-side h2 {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+

@@ -1,0 +1,11 @@
+.image-container {
+    display: flex;
+    flex-direction: column; /* Stack images vertically */
+    justify-content: flex-start; /* Align images to the top */
+    align-items: center; /* Center images horizontally */
+    flex: 1;
+    margin:0;
+  }
+
+
+  

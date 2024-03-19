@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
+import { TextField, Button, Grid, Typography, IconButton, InputAdornment } from '@mui/material';
+import { EmailOutlined, LockOutlined, Visibility, VisibilityOff } from '@mui/icons-material';
+
 
 import InputField from '../components/InputField';
 import '../App.css'; 
@@ -8,40 +11,135 @@ import './styles/login.css'
 
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
 
-    const handleEmailChange = (e) => setEmail(e.target.value);
-    const handlePasswordChange = (e) => setPassword(e.target.value);
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+    setEmailError(false); // Reset email error when user is typing
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Logic to handle login goes here
-        console.log(email, password);
-    };
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+    setPasswordError(false); // Reset password error when user is typing
+  };
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // Check if email is empty
+    if (!email.trim()) {
+      setEmailError(true);
+      return; // Exit early if email is empty
+    }
+
+    // Check if password is empty
+    if (!password.trim()) {
+      setPasswordError(true);
+      return; // Exit early if password is empty
+    }
+    // Check if password is less than 8 characters
+    if (password.length < 8) {
+      setPasswordError(true);
+      return; // Exit early if password is too short
+    }
+    // Check if email format is valid
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setEmailError(true);
+      return; // Exit early if email is invalid
+    }
+
+    // Handle form submission logic here
+  };
 
     return (
-        <div className="container">
-            <ImageContainer />
-            <div className="sub-container">
+        <div className="sub-container background-driving">
+        <div className='form-box'>
         <h1>TAG ALONG..</h1>
-        <h2>Login</h2>
-        <div className="form-box">
-          
-          <form onSubmit={handleSubmit}>
-            <InputField type={'email'} />
-            <InputField type={'password'} />
-            <button type="submit">LOGIN</button>
-          </form>
-          <p>
-            Forgot Your password? <Link to="/reset">Click here</Link>
-          </p>
-        </div>
+        <form onSubmit={handleSubmit}>
+      <Grid container spacing={2} justifyContent="center">
+        <Grid item xs={12}>
+          <Typography variant="h5">Login</Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            fullWidth
+            id="email"
+            label="Email"
+            variant="outlined"
+            value={email}
+            onChange={handleEmailChange}
+            error={emailError}
+            helperText={emailError ? 'Email is required and must be valid' : ''}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <EmailOutlined />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            fullWidth
+            id="password"
+            label="Password"
+            type={showPassword ? 'text' : 'password'}
+            variant="outlined"
+            value={password}
+            onChange={handlePasswordChange}
+            error={passwordError}
+            helperText={passwordError ? 'Password is required' : ''}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <LockOutlined />
+                </InputAdornment>
+              ),
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Grid>
+        {(passwordError || emailError) && <p style={{color:'red'}}> Please Fill out all the Required Fields</p>}
+
+        <Grid item xs={12}>
+          <Button type="submit" variant="contained" color="primary" fullWidth>
+            Login
+          </Button>
+        </Grid>
+      </Grid>
+    </form>
+
         <p>
           Don't have an Account? <Link to="/signup">Sign Up</Link>
         </p>
+        </div>
+        
       </div>
-    </div>
   );
 };
 

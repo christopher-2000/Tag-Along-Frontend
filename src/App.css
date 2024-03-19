@@ -22,7 +22,13 @@
   align-items: center; /* Centers children horizontally */
   height: 100vh;
   flex: 1;
+  padding-left: 10%;
+  padding-right: 10%;
   
+}
+
+.sub-container h1{
+  color: #053973;
 }
 
 .card{
@@ -37,6 +43,13 @@
   background-image: url('/public/city2.webp');
   
   background-position: 100%;
+}
+.background-driving{
+  background-image: url('/public/driving_cover.jpg');
+  background-position: 100%;
+}
+.walking-students{
+  background-image: url('/public/walking_students.jpg');
 }
 .silhouette{
   width: 100%;
@@ -61,12 +74,11 @@ button:hover {
 }
 
 .form-box {
-  border: 3px solid rgb(64, 64, 64); /* Border color */
   border-radius: 30px; /* Rounded corners for the box */
   padding: 2rem; /* Space inside the box */
-  width: 100%; /* Full width of the container */
   max-width: 400px; /* Max width of the form box */
   margin: auto; /* Center the box in the parent container */
   background-color: #ffffff; /* Background color for the form box */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow to the box */
+  width: 80%;
 }

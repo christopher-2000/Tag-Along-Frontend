@@ -1,11 +1,16 @@
 .image-container {
+    height: 100vh;
     display: flex;
-    flex-direction: column; /* Stack images vertically */
-    justify-content: flex-start; /* Align images to the top */
-    align-items: center; /* Center images horizontally */
-    flex: 1;
-    margin:0;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    z-index: 0;
   }
 
+  .image-container img {
+    height: 50vh;
+    margin: 0;
+    width: 35vw;
+  }
 
   

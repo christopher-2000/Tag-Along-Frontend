@@ -1,65 +1,17 @@
+header{
+    background-color: #25A9EF;
+    padding-left: 10%;
+    padding-right: 10%;
+}
 
-  .welcome-image {
-    width: 100%; /* Each image takes full width of the container */
-    height: auto; /* Keep the image's aspect ratio */
-  }
-  
-  .welcome-side {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; /* Centers children horizontally */
-    flex: 1;
-    padding: 1rem;
-  }
-  
-  .welcome-side h1 {
-    text-align: center;
+header img{
     width: 100%;
-    margin-bottom: 2rem;
+}
+
+header h1{
     color: #17477F;
-    font-weight: 800;
-  }
-  
-  .welcome-side h2 {
-    text-align: center;
-    width: 100%;
-    margin-bottom: 2rem;
-  }
+}
 
-  .login-button{
-    display: block;
-    width: 45%; /* Or your preferred width */
-    margin: 10px auto; /* Centers the button and adds space between them */
-    padding: 10px 20px;
-    text-align: center;
-    background-color: #17477F; /* Replace with the color you want */
+header h2{
     color: white;
-    text-decoration: none;
-    border-radius: 20px;
-    font-size: 16px;
-  }
-  
-  .signup-button {
-    display: block;
-    width: 45%; /* Or your preferred width */
-    margin: 10px auto; /* Centers the button and adds space between them */
-    padding: 10px 20px;
-    text-align: center;
-    background-color: #5A9ED7; /* Replace with the color you want */
-    color: white;
-    text-decoration: none;
-    border-radius: 20px;
-    font-size: 16px;
-  }
-  
-  .login-button:hover  {
-    background-color: #25e19c; 
-    /* Darker shade for hover effect */
-  }
-  
-  .signup-button:hover{
-    background-color: #25e19c;
-  }
-
-  
+}

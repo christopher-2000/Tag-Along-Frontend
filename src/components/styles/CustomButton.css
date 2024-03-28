@@ -1,0 +1,33 @@
+.button {
+    display: flex;
+    align-items: center; /* Vertically center the content */
+    justify-content: center; /* Horizontally center the content */
+    border-radius: 10px;
+    width: 100%;
+    color: white;
+    height: 50px;
+    font-weight: bold;
+    transition: box-shadow 0.3s ease;
+    
+  }
+  
+  .blue {
+    background-color: #91E0EE; /* Apply blue background color */
+  }
+  
+  .red {
+    background-color: red; /* Apply red background color */
+  }
+  
+  .green {
+    background-color: #00CB82; /* Apply green background color */
+  }
+  .green-inverse {
+    background-color: white; /* Apply green background color */
+    color: #00CB82;
+  }
+  
+  /* Add more color classes as needed */
+  .button:hover {
+    box-shadow: 0 0 10px rgba(211, 14, 237, 0.5); /* Light blue shadow on hover */
+  }

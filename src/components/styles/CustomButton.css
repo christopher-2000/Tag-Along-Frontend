@@ -3,11 +3,12 @@
     align-items: center; /* Vertically center the content */
     justify-content: center; /* Horizontally center the content */
     border-radius: 10px;
-    width: 100%;
+    width: 90%;
     color: white;
     height: 50px;
     font-weight: bold;
-    transition: box-shadow 0.3s ease;
+    transition: filter 0.3s ease;
+    margin: 1%;
     
   }
   
@@ -26,8 +27,18 @@
     background-color: white; /* Apply green background color */
     color: #00CB82;
   }
-  
+  .orange{
+    background-color: #FB8401;
+  }
+  .orange-inverse{
+    background-color: white;
+    color: #FB8401;
+  }
+
   /* Add more color classes as needed */
   .button:hover {
-    box-shadow: 0 0 10px rgba(211, 14, 237, 0.5); /* Light blue shadow on hover */
+    box-shadow: (0 0 10px white); /* Light blue shadow on hover */
+    filter: brightness(0.8);
   }
+
+  

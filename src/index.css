@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family:'Montserrat', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -64,5 +64,14 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 15vw; /* Font size for screens up to 480px width */
+  }
+  h2 {
+    font-size: 5vw; /* Font size for screens up to 480px width */
   }
 }

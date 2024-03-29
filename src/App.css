@@ -58,20 +58,27 @@
 
 .inline{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); /* Responsive grid layout */
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Responsive grid layout */
   gap: 20px;
   justify-content: center;
   align-items: center;
+  margin: 1%;
+  place-items: center;
+  position:relative
 }
+
 .inline-200{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid layout */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid layout */
   gap: 20px;
   justify-content: center;
   align-items: center;
+  place-items: center;
 }
 .grid-item{
   text-align: center;
+  place-items: center;
+  max-width: 80%;
 }
 
 button {

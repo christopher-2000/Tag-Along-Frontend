@@ -1,7 +1,9 @@
 header{
-    background-color: #25A9EF;
+    background-color: #053872;
     padding-left: 10%;
     padding-right: 10%;
+    margin: 0;
+    padding-bottom: 1%;
 }
 
 header img{
@@ -9,9 +11,24 @@ header img{
 }
 
 header h1{
-    color: #17477F;
+    color: #ffffff;
+    width: 90%;
 }
 
 header h2{
-    color: white;
+    color: #219EBC;
+    width: 90%;
+}
+
+header a{
+    width: 90%;
+    justify-content: center;
+    place-items: center;
+}
+
+header img{
+    margin: 1%;
+    width: 70%;
+    border-radius: 20px;
+    overflow: hidden;
 }

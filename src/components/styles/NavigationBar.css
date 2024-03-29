@@ -2,9 +2,9 @@
 .navigation-container {
   display: flex;
   justify-content: center;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  background-color: #25A9EF;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  background-color: #053872;
 }
 
 nav ul {

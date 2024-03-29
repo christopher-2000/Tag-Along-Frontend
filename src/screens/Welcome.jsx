@@ -1,37 +1,56 @@
 // Welcome.jsx
 
-import React from 'react';
-import { Link } from "react-router-dom";
-
+import React, { useEffect, useState } from 'react';
+import { Link, NavLink } from "react-router-dom";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
 
 import './styles/Welcome.css'
 import ImageContainer from '../components/ImageContainer';
 import NavigationBar from '../components/NaviagationBar';
 import { Button } from '../components/CustomButton';
+import ParticlesBackground from './Particles';
 
 const Welcome = () => {
+
     return (
-
+            <>
             <header>
-                <NavigationBar />
+            <div className='particles'>
+                <ParticlesBackground />
+            </div>
+            
+            <NavigationBar />
 
-                <div className='inline'>
-                    <div className='grid-item maxw'>
-                        <h1>Tag Along..</h1>
-                        <h2>Affordable Rides and make new Friends</h2>
-                        <div className='inline-200'>
-                            
-                            <Button text={'LOGIN'} color={'green'} />
-                            <Button text={'SIGNUP'} color={'green-inverse'} />
-                        </div>
-                    </div>
-                    <div>
-                    <img className='grid-item' src="/car.avif" alt="" />
+            <div className='inline'>
+                <div className='grid-item'>
+                    <h1>TAG ALONG..</h1>
+                    <h2>Affordable Rides and make new Friends</h2>
+
+                    <div className='inline-200'>
+                        <NavLink to={'/login'} >
+                            <Button text={'LOGIN'} color={'orange'} />
+                        </NavLink>
+
+                        <NavLink to={'signup'}>
+                            <Button text={'SIGNUP'} color={'orange-inverse'} />
+                        </NavLink>
                     </div>
                     
                 </div>
 
-            </header>
+                <div className='grid-item'>
+                        <img src="/bluecar.png" alt="" />
+                </div>
+
+            </div>
+        
+        </header>
+
+        <section className='inline'>
+            helloooo
+        </section>
+        </>
     );
 };
 

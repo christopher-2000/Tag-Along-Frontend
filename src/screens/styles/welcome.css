@@ -32,3 +32,20 @@ header img{
     border-radius: 20px;
     overflow: hidden;
 }
+
+.content{
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.content img{
+    margin: 1%;
+    width: 80%;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.description{
+    text-align: left;
+}
+

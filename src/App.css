@@ -38,7 +38,19 @@
 
 .dark-blue-back{
   background-color: #053973;
+  color:white
 }
+
+.iceblue-back{
+  background-color: #219EBC;
+  color: white;
+}
+
+.orange-back{
+  background-color: #FB8401;
+  color: white;
+}
+
 .city-background{
   background-image: url('/public/city2.webp');
   

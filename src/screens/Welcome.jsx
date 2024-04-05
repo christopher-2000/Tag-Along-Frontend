@@ -9,7 +9,8 @@ import { Button } from '../components/CustomButton';
 import ParticlesBackground from './Particles';
 
 const Welcome = () => {
-    const ref = useRef();
+
+
     return (
             <>
             <header>

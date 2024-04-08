@@ -1,15 +1,14 @@
 import React, { createContext, useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import { baseURL } from '../Config';
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
-
-
-  const baseURL = 'http://localhost:8000/api/'
+  
   
   useEffect(() => {
 
@@ -36,6 +35,7 @@ const AuthProvider = ({ children }) => {
     };
 
     checkLoginStatus();
+
   }, []);
 
   

@@ -24,7 +24,7 @@ const Login = () => {
 
   useEffect(() => {
     if(isLoggedIn){
-      navigate('/')
+      navigate('/go')
     }
   },[isLoggedIn, navigate])
 
@@ -80,7 +80,7 @@ const Login = () => {
       const response = await login(email, password)
       console.log(response)
       if(response){
-        navigate('/')
+        navigate('/go')
       }
       if (!response){
         setInvalidError(true)

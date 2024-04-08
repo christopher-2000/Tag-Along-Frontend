@@ -6,35 +6,33 @@ import SignUp from './screens/Signup';
 import Welcome from './screens/Welcome';
 import { AuthProvider } from './context/AuthContext';
 import AuthWrapper from './wrappers/AuthWrapper';
+import TokenRefresher from './wrappers/TokenRefresher';
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    children:[
-      {
-        path: "welcome",
-        index:true,
-        element: <Welcome />,
-      },
-      {
-        path: "login",
-        element: <Login />,
-      },
-      {
-        path: "signup",
-        element: <SignUp />,
-      },
-      {
-        path:"/",
-        element: (<AuthWrapper><Dashboard /></AuthWrapper>),
-      }
-    ]
-  },
+  
+    {
+      path: "/",
+      index:true,
+      element: <Welcome />,
+    },
+    {
+      path: "login",
+      element: <Login />,
+    },
+    {
+      path: "signup",
+      element: <SignUp />,
+    },
+    {
+      path:"go",
+      element: (<AuthWrapper><Dashboard /></AuthWrapper>),
+    }
 ]);
 
 function App() {
   return(
     <AuthProvider>
+      <TokenRefresher />
     <RouterProvider router={router} />
     </AuthProvider>
   )

@@ -2,6 +2,9 @@ import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
 import Cookies from 'js-cookie'
 import {useNavigate} from 'react-router-dom'
+import { ViewSidebar } from "@mui/icons-material";
+import SideBar from "../components/Sidebar";
+
 
 export default function Dashboard() {
     const { user, logout } = useContext(AuthContext);
@@ -18,6 +21,7 @@ export default function Dashboard() {
             <h2>Hi, {user != null && user.username}</h2>
             {/* Render the logout button with inline styles */}
             <button style={styles.logoutButton} onClick={handleLogout}>Logout</button>
+        <SideBar />
         </div>
     );
 }

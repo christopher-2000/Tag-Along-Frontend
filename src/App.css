@@ -35,7 +35,10 @@
   background-color: white;
   
 }
-
+#sidebar{
+  background-color: #053973;
+  color:white
+}
 .dark-blue-back{
   background-color: #053973;
   color:white

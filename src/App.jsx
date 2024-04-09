@@ -1,12 +1,14 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.css'
-import Dashboard from './screens/Dashboard';
 import Login from './screens/Login';
 import SignUp from './screens/Signup';
 import Welcome from './screens/Welcome';
 import { AuthProvider } from './context/AuthContext';
 import AuthWrapper from './wrappers/AuthWrapper';
 import TokenRefresher from './wrappers/TokenRefresher';
+import Dashboard from './screens/afterLogin/Dashboard';
+import RootLayout from './screens/afterLogin/RootLayout';
+import Rides from './screens/afterLogin/Rides';
 
 const router = createBrowserRouter([
   
@@ -25,7 +27,30 @@ const router = createBrowserRouter([
     },
     {
       path:"go",
-      element: (<AuthWrapper><Dashboard /></AuthWrapper>),
+      element: (<AuthWrapper><RootLayout /></AuthWrapper>),
+      children:[
+        {
+          path:'',
+          element:<Dashboard/>
+        },
+        {
+          path:'rides',
+          element:<Rides/>
+        },
+        {
+          path:'profile',
+          element:<Dashboard/>
+        },
+        {
+          path:'community',
+          element:<Dashboard/>
+        },
+        {
+          path:'reviews',
+          element:<Dashboard/>
+        },
+
+      ]
     }
 ]);
 

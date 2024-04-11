@@ -2,6 +2,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { IonIcon } from '@ionic/react';
 import { carSport, speedometerOutline, carSportOutline, personOutline, peopleOutline, starHalfOutline} from 'ionicons/icons'; // Import the desired icon from Ionicons
 import { useContext, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { AuthContext } from '../../context/AuthContext';
@@ -16,7 +17,19 @@ function Navbar() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const {user} = useContext(AuthContext)
+    const {user, logout} = useContext(AuthContext)
+
+    const handleLogout = () => {
+        // Call the logout function from AuthContext
+        logout();
+    };
+
+    const location = useLocation();
+
+    // Function to determine if a NavLink should be active
+    const isActive = (path) => {
+        return location.pathname === path;
+    };
 
     const iconStyle = {
         fontSize: '2rem',
@@ -47,41 +60,42 @@ function Navbar() {
 
         <Offcanvas show={show} onHide={handleClose} id='sidebar'>
             <Offcanvas.Header closeButton>
-                <Offcanvas.Title>Welcome, {user!=null && user.username}</Offcanvas.Title>
+                <Offcanvas.Title>Hi, {user!=null && user.username}</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
             <ul>
-                <NavLink to="">
-                    <div className='sideBarItem'>
+                <NavLink to="" >
+                    <div className={isActive('/go') ? 'activeitem sideBarItem' : 'sideBarItem'}>
                         <IonIcon icon={speedometerOutline} style={{ fontSize: '1.5rem' ,margin:'0px 10px'}} />
                         Dashboard
                     </div>
                 </NavLink>
-                <NavLink to="rides">
-                    <div className='sideBarItem'>
+                <NavLink to="rides" activeClassName="activeitem">
+                    <div className={isActive('/go/rides') ? 'activeitem sideBarItem' : 'sideBarItem'}>
                     <IonIcon icon={carSportOutline} style={{ fontSize: '1.5rem' ,margin:'0px 10px'}} />
                         Rides
                     </div>
                 </NavLink>
-                <NavLink to="profile">
-                    <div className='sideBarItem'>
+                <NavLink to="profile" activeClassName="activeitem">
+                    <div className={isActive('/go/profile') ? 'activeitem sideBarItem' : 'sideBarItem'}>
                     <IonIcon icon={personOutline} style={{ fontSize: '1.5rem' ,margin:'0px 10px'}} />
                         Profile
                     </div>
                 </NavLink>
-                <NavLink to="community" >
-                    <div className='sideBarItem'>
+                <NavLink to="community" activeClassName="activeitem">
+                    <div className={isActive('/go/community') ? 'activeitem sideBarItem' : 'sideBarItem'}>
                     <IonIcon icon={peopleOutline} style={{ fontSize: '1.5rem' ,margin:'0px 10px'}} />
                         Community
                     </div>
                 </NavLink>
-                <NavLink to="reviews">
-                    <div className='sideBarItem'>
+                <NavLink to="reviews" activeClassName="activeitem">
+                    <div className={isActive('/go/reviews') ? 'activeitem sideBarItem' : 'sideBarItem'}>
                     <IonIcon icon={starHalfOutline} style={{ fontSize: '1.5rem' ,margin:'0px 10px'}} />
                         Reviews
                     </div>
                 </NavLink>
             </ul>
+                <button style={logoutButton} onClick={handleLogout}>LOG OUT</button>
             </Offcanvas.Body>
         </Offcanvas>
         
@@ -113,4 +127,16 @@ function Navbar() {
     alignItems:'center'
   };
   
-  export default Navbar;
+ const logoutButton =  {
+    backgroundColor: '#f44336', /* Red background color */
+    color: 'white', /* White text color */
+    border: 'none',
+    width:'80%',
+    borderRadius: '4px',
+    padding: '10px 20px',
+    margin:'10%',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s',
+};
+
+export default Navbar;

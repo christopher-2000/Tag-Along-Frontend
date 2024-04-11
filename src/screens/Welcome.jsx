@@ -26,7 +26,7 @@ const Welcome = () => {
                     <h2>Affordable Rides and make new Friends</h2>
 
                     <div className='inline-200'>
-                        <NavLink to={'/login'} >
+                        <NavLink to={'login'} >
                             <Button text={'LOGIN'} color={'orange'} />
                         </NavLink>
 
@@ -34,11 +34,10 @@ const Welcome = () => {
                             <Button text={'SIGNUP'} color={'orange-inverse'} />
                         </NavLink>
                     </div>
-                    
                 </div>
 
                 <div className='grid-item'>
-                        <img src="/bluecar.png" alt="" />
+                    <img src="/bluecar.png" alt="" />
                 </div>
 
             </div>

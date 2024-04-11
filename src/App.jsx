@@ -1,4 +1,8 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+
+
 import './App.css'
 import Login from './screens/Login';
 import SignUp from './screens/Signup';
@@ -57,8 +61,10 @@ const router = createBrowserRouter([
 function App() {
   return(
     <AuthProvider>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
       <TokenRefresher />
     <RouterProvider router={router} />
+    </LocalizationProvider>
     </AuthProvider>
   )
 }

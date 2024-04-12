@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from "react-router-dom";
 
-import './styles/Welcome.css'
+import './styles/welcome.css'
 import NavigationBar from '../components/NaviagationBar';
 import { Button } from '../components/CustomButton';
 import ParticlesBackground from './Particles';

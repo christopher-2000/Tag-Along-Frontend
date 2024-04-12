@@ -40,7 +40,7 @@
   color:white
 }
 .dark-blue-back{
-  background-color: #053973;
+  background-color: #16457C;
   color:white
 }
 
@@ -55,9 +55,8 @@
 }
 
 .city-background{
-  background-image: url('/public/city2.webp');
+  background-image: url('/public/city_background.jpg');
   
-  background-position: 100%;
 }
 .background-driving{
   background-image: url('/public/driving_cover.jpg');

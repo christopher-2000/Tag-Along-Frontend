@@ -12,6 +12,7 @@ import { TextField, Button, Grid, Typography, IconButton, InputAdornment } from 
 
 import './styles/dashboard.css'
 import { Height } from "@mui/icons-material";
+import RideListView from "../../components/RideListView";
 
 export default function Dashboard() {
     const { user, logout } = useContext(AuthContext);
@@ -24,7 +25,7 @@ export default function Dashboard() {
 
     return (
         <>
-        <div className="dashboard-container"> {/* Apply inline styles */} 
+        <div className="dashboard-container city-background"> {/* Apply inline styles */} 
             <h2 style={{fontWeight:'bold', color:'white'}}>Dashboard</h2> 
             <br/><br/><br/>
             <div className="search-box">
@@ -52,8 +53,20 @@ export default function Dashboard() {
                     </div>
                 </div>
             </div>
-                
         </div>
+
+        
+        <div className="dashboard-container">
+            <h2 style={{fontWeight:'bold'}}>Most Recent Rides</h2>
+
+            <br/><br/>
+            <RideListView />
+            <RideListView />
+            <RideListView />
+        </div>
+        
+
+        <button className="button-absolute-bottom-right iceblue-back">+ Create Ride</button>
         </>
         
     );

@@ -1,0 +1,58 @@
+.dashboard-container{
+  max-width: 100vw;
+  padding: 5% 5%;
+  text-align: left;
+}
+
+.search-box{
+  border: 1px solid grey;
+  border-radius: 10px;
+  padding: 5%;
+  margin: 0 5%;
+  background-color: white;
+  opacity: 0.99;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: '10px';
+  }
+
+.search-container button{
+    background-color: '#053973'; /* Red background color */
+    color: 'white'; /* White text color */
+    border: 'none';
+    border-radius: 5px;
+    padding: '10px 20px';
+    cursor: 'pointer';
+    transition: 'background-color 0.3s';
+    height: 55px;
+}
+
+.search-container .item{
+  margin: 10px 10px;
+}
+
+.button-absolute-bottom-right {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 10%;
+  height: 10%;
+}
+
+@media (max-width: 1000px) {
+  .search-container {
+    display: block;
+    justify-content: center;
+  }
+}
+
+.item{
+    margin: 20px 0px;
+}
+
+.search-container .MuiFormControl-root{
+  width: 100%;
+}

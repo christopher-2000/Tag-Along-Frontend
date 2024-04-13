@@ -12,7 +12,15 @@ import AuthWrapper from './wrappers/AuthWrapper';
 import TokenRefresher from './wrappers/TokenRefresher';
 import Dashboard from './screens/afterLogin/Dashboard';
 import RootLayout from './screens/afterLogin/RootLayout';
-import Rides from './screens/afterLogin/Rides';
+
+import Active from './screens/afterLogin/driver-routes/Active';
+import Requests from './screens/afterLogin/driver-routes/Requests';
+import History from './screens/afterLogin/driver-routes/History';
+import DriverPortal from './screens/afterLogin/DriverPortal';
+import Passenger from './screens/afterLogin/Passenger';
+import Requested from './screens/afterLogin/passenger-routes/Requests';
+import PassengerHistory from './screens/afterLogin/passenger-routes/History';
+
 
 const router = createBrowserRouter([
   
@@ -38,8 +46,37 @@ const router = createBrowserRouter([
           element:<Dashboard/>
         },
         {
-          path:'rides',
-          element:<Rides/>
+          path:'driver',
+          element:<DriverPortal/>,
+          children:[
+            {
+              element:<Active/>,
+              index:true
+            },
+            {
+              path:'requests',
+              element:<Requests/>
+            },
+            {
+              path:'history',
+              element:<History />
+
+            }
+          ]
+        },
+        {
+          path:'passenger',
+          element:<Passenger />,
+          children:[
+            {
+              index:true,
+              element:<Requested/>
+            },
+            {
+              path:'history',
+              element:<PassengerHistory />
+            }
+          ]
         },
         {
           path:'profile',

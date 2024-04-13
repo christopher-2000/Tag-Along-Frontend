@@ -1,0 +1,17 @@
+.nav-container{
+  width:80%;
+  justify-content: space-around;
+  
+}
+
+.switchbar-link{
+  margin: 0px 10px;
+  color: black;
+  transition: border 0.3s ease;
+  padding-bottom: 5px;
+  border-bottom: 3px solid white;
+}
+
+.active, .switchbar-link:hover{
+  border-bottom: 3px solid #219EBC;
+}

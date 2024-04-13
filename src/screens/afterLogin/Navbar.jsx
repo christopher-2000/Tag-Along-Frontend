@@ -3,6 +3,9 @@ import { IonIcon } from '@ionic/react';
 import { carSport, speedometerOutline, carSportOutline, personOutline, peopleOutline, starHalfOutline} from 'ionicons/icons'; // Import the desired icon from Ionicons
 import { useContext, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import Icon from '@mdi/react';
+import { mdiSeatbelt } from '@mdi/js';
+
 
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { AuthContext } from '../../context/AuthContext';
@@ -55,7 +58,7 @@ function Navbar() {
         
         <div style={brandStyle}>
             <IonIcon icon={carSport} style={{ fontSize: '2rem' ,margin:'0px 10px'}} />
-            TAG ALONG
+            <h2 style={{fontWeight:'bold', marginBottom:'0px'}}>TAG ALONG</h2>
         </div>
 
         <Offcanvas show={show} onHide={handleClose} id='sidebar'>
@@ -70,10 +73,16 @@ function Navbar() {
                         Dashboard
                     </div>
                 </NavLink>
-                <NavLink to="rides" activeClassName="activeitem">
-                    <div className={isActive('/go/rides') ? 'activeitem sideBarItem' : 'sideBarItem'}>
+                <NavLink to="driver" activeClassName="activeitem">
+                    <div className={isActive('/go/driver') ? 'activeitem sideBarItem' : 'sideBarItem'}>
                     <IonIcon icon={carSportOutline} style={{ fontSize: '1.5rem' ,margin:'0px 10px'}} />
-                        Rides
+                        Driver Portal
+                    </div>
+                </NavLink>
+                <NavLink to="passenger" activeClassName="activeitem">
+                    <div className={isActive('/go/passenger') ? 'activeitem sideBarItem' : 'sideBarItem'}>
+                        <Icon path={mdiSeatbelt} size={1.2} style={{ fontSize: '1.5rem' ,margin:'0px 8px'}}  />
+                        Passenger Portal
                     </div>
                 </NavLink>
                 <NavLink to="profile" activeClassName="activeitem">

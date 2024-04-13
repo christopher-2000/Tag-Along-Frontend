@@ -94,6 +94,13 @@
   place-items: center;
   max-width: 80%;
 }
+.center{
+  margin: auto;
+}
+
+.bold{
+  font-weight: bold;
+}
 
 button {
   display: block; /* The button appears on a new line */

@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 
 import SwitchBar from '../../components/SwitchBar'
 import './styles/driverportal.css'
@@ -20,6 +20,8 @@ export default function DriverPortal() {
 
     ]
 
+    const navigate = useNavigate()
+
     return(
         <>
         <div className='rides-container'>
@@ -27,7 +29,7 @@ export default function DriverPortal() {
                 Rides
             </h2>
             
-            <button className="button-centralized iceblue-back"><h2 className='bold'>+ Create Ride</h2></button>
+            <button onClick={() => navigate('/go/create-ride')}  className="button-centralized iceblue-back"><h2 className='bold'>+ Create Ride</h2></button>
             
             <br /><br />
             <SwitchBar routes={routes} />

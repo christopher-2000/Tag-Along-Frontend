@@ -89,6 +89,20 @@
   align-items: center;
   place-items: center;
 }
+
+.responsive-inline{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  margin: 2% 0%;
+}
+@media screen and (max-width: 900px){
+  .responsive-inline{
+    display: block;
+  }
+}
+
 .grid-item{
   text-align: center;
   place-items: center;

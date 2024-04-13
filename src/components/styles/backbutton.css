@@ -1,0 +1,19 @@
+.backbutton{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-weight: bold;
+    padding: 5px 10px;
+    width: fit-content;
+    border-radius: 5px;
+}
+
+.backbutton h4{
+    margin-bottom: 0px;
+}
+
+.createrideform{
+    border: 1px solid rgb(202, 202, 202);
+    padding: 2%;
+    border-radius: 10px;
+}

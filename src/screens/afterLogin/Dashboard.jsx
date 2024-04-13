@@ -73,7 +73,7 @@ export default function Dashboard() {
         </div>
         
 
-        <button className="button-absolute-bottom-right iceblue-back">+ Create Ride</button>
+        <button onClick={() => navigate('create-ride')} className="button-absolute-bottom-right iceblue-back">+ Create Ride</button>
         </>
         
     );

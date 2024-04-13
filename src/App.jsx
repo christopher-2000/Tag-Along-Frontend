@@ -20,6 +20,7 @@ import DriverPortal from './screens/afterLogin/DriverPortal';
 import Passenger from './screens/afterLogin/Passenger';
 import Requested from './screens/afterLogin/passenger-routes/Requests';
 import PassengerHistory from './screens/afterLogin/passenger-routes/History';
+import CreateRide from './screens/afterLogin/CreateRide';
 
 
 const router = createBrowserRouter([
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
 
             }
           ]
+        },
+        {
+          path:'create-ride',
+          element:<CreateRide/>,
         },
         {
           path:'passenger',

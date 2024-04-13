@@ -55,7 +55,14 @@ export default function Dashboard() {
             </div>
         </div>
 
-        
+        <div className="dashboard-container">
+            <h2 style={{fontWeight:'bold'}}>Search Results</h2>
+
+            <br/><br/>
+            <RideListView />
+            <RideListView />
+            <RideListView />
+        </div>
         <div className="dashboard-container">
             <h2 style={{fontWeight:'bold'}}>Most Recent Rides</h2>
 

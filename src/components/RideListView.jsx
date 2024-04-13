@@ -4,7 +4,9 @@ import './styles/RideListView.css'
 export default function RideListView(){
     return(
         <>
+            
             <div className="ride-list-view">
+            <h6>12/31/2024</h6>
                 <div className='fromto'>
                     <div className='from center'>
                         <h5 className='bold'>15:00</h5>

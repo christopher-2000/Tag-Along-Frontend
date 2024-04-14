@@ -13,6 +13,7 @@ import { TextField, Button, Grid, Typography, IconButton, InputAdornment } from 
 import './styles/dashboard.css'
 import { Height } from "@mui/icons-material";
 import RideListView from "../../components/RideListView";
+import CreateRide from "./CreateRide";
 
 export default function Dashboard() {
     const { user, logout } = useContext(AuthContext);
@@ -73,7 +74,9 @@ export default function Dashboard() {
         </div>
         
 
-        <button onClick={() => navigate('create-ride')} className="button-absolute-bottom-right iceblue-back">+ Create Ride</button>
+        <div className="button-absolute-bottom-right">
+            <CreateRide />
+        </div>
         </>
         
     );

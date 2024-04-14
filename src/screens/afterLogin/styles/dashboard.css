@@ -1,6 +1,6 @@
 .dashboard-container{
   max-width: 100vw;
-  padding: 5% 5%;
+  padding: 2% 10%;
   text-align: left;
 }
 
@@ -8,7 +8,6 @@
   border: 1px solid grey;
   border-radius: 10px;
   padding: 5%;
-  margin: 0 5%;
   background-color: white;
   opacity: 0.99;
 }
@@ -38,8 +37,6 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 150px;
-  height: 10%;
 }
 
 @media (max-width: 1000px) {

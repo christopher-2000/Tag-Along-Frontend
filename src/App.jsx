@@ -21,6 +21,7 @@ import Passenger from './screens/afterLogin/Passenger';
 import Requested from './screens/afterLogin/passenger-routes/Requests';
 import PassengerHistory from './screens/afterLogin/passenger-routes/History';
 import CreateRide from './screens/afterLogin/CreateRide';
+import Profile from './screens/afterLogin/Profile';
 
 
 const router = createBrowserRouter([
@@ -85,7 +86,7 @@ const router = createBrowserRouter([
         },
         {
           path:'profile',
-          element:<Dashboard/>
+          element:<Profile />
         },
         {
           path:'community',

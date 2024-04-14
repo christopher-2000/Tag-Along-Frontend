@@ -49,6 +49,15 @@
   color: white;
 }
 
+.secondaryblue-back{
+  background-color: #e4e4ef;
+  color: #053973;
+}
+.secondaryblue-back:hover{
+  background-color: #cbcbd1;
+  color: #053973;
+}
+
 .orange-back{
   background-color: #FB8401;
   color: white;

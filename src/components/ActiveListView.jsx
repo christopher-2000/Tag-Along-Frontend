@@ -1,7 +1,7 @@
 import { IonIcon } from '@ionic/react'
 import RideRequest from '../screens/afterLogin/RideRequest'
 //import './styles/RideListView.css'
-import { calendarOutline } from 'ionicons/icons'
+import { calendarOutline, trashBin, trashOutline } from 'ionicons/icons'
 import EditRide from '../screens/afterLogin/driver-routes/EditRide'
 
 
@@ -10,8 +10,10 @@ export default function ActiveListView(){
         <>
             
             <div className="ride-list-view">
-            <h5><IonIcon icon={calendarOutline} /> 12/31/2024</h5><br />
-            
+            <div style={{width:'100%', display:'flex', justifyContent:'space-between', alignItems:'center'}}>
+                <h5><IonIcon icon={calendarOutline} /> 12/31/2024</h5><br />
+                <button style={{margin:'5px'}} className='deleteicon'><IonIcon icon={trashOutline} /></button>
+            </div>
                 <div className='ridelist-body'>
                     <div className='fromto'>
                         <div className='from center'>

@@ -73,31 +73,31 @@ function Navbar() {
                         Dashboard
                     </div>
                 </NavLink>
-                <NavLink to="driver" activeClassName="activeitem">
+                <NavLink to="driver" >
                     <div className={isActive('/go/driver') ? 'activeitem sideBarItem' : 'sideBarItem'}>
                     <IonIcon icon={carSportOutline} style={{ fontSize: '1.5rem' ,margin:'0px 10px'}} />
                         Driver Portal
                     </div>
                 </NavLink>
-                <NavLink to="passenger" activeClassName="activeitem">
+                <NavLink to="passenger" >
                     <div className={isActive('/go/passenger') ? 'activeitem sideBarItem' : 'sideBarItem'}>
                         <Icon path={mdiSeatbelt} size={1.2} style={{ fontSize: '1.5rem' ,margin:'0px 8px'}}  />
                         Passenger Portal
                     </div>
                 </NavLink>
-                <NavLink to="profile" activeClassName="activeitem">
+                <NavLink to="profile" >
                     <div className={isActive('/go/profile') ? 'activeitem sideBarItem' : 'sideBarItem'}>
                     <IonIcon icon={personOutline} style={{ fontSize: '1.5rem' ,margin:'0px 10px'}} />
                         Profile
                     </div>
                 </NavLink>
-                <NavLink to="community" activeClassName="activeitem">
+                <NavLink to="community" >
                     <div className={isActive('/go/community') ? 'activeitem sideBarItem' : 'sideBarItem'}>
                     <IonIcon icon={peopleOutline} style={{ fontSize: '1.5rem' ,margin:'0px 10px'}} />
                         Community
                     </div>
                 </NavLink>
-                <NavLink to="reviews" activeClassName="activeitem">
+                <NavLink to="reviews" >
                     <div className={isActive('/go/reviews') ? 'activeitem sideBarItem' : 'sideBarItem'}>
                     <IonIcon icon={starHalfOutline} style={{ fontSize: '1.5rem' ,margin:'0px 10px'}} />
                         Reviews

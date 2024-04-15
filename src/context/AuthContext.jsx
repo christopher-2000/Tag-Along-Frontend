@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { baseURL } from '../Config';
+import { json } from 'react-router-dom';
 
 const AuthContext = createContext();
 
@@ -11,23 +12,14 @@ const AuthProvider = ({ children }) => {
   
   
   useEffect(() => {
-
-    const access_token = Cookies.get('access_token')
-
-    const config = {
-        headers:{
-            'Authorization':`Bearer ${access_token}`
-        },
-        withCredentials: true
-      }
-
-    const checkLoginStatus = async () => {
+    
+    const checkLoginStatus = () => {
       try {
-        const response = await axios.get(baseURL + 'getuserprofile/', config);
-        if (response.data) {
+        const user = JSON.parse(localStorage.getItem('user'))
+
+        if (user) {
           setIsLoggedIn(true);
-          setUser(response.data);
-          console.log(response.data)
+          setUser(user);
         }
       } catch (error) {
         console.error('Error checking login status:', error);
@@ -41,11 +33,7 @@ const AuthProvider = ({ children }) => {
   
   const setprofile = async ()=>{
 
-    const access_token = Cookies.get('access_token')
     const config = {
-        headers:{
-            'Authorization':`Bearer ${access_token}`
-        },
         withCredentials: true
       }
     try {
@@ -53,6 +41,7 @@ const AuthProvider = ({ children }) => {
       if (response.data) {
         setIsLoggedIn(true);
         setUser(response.data);
+        localStorage.setItem('user',JSON.stringify(response.data))
       }
     } catch (error) {
       console.error('Error checking login status:', error);
@@ -63,7 +52,9 @@ const AuthProvider = ({ children }) => {
     try {
       const response = await axios.post(baseURL + 'loginuser/', { email, password }, { withCredentials: true });
       if (response.data.success) {
-        setprofile();
+        setIsLoggedIn(true);
+        setUser(response.data.user);
+        localStorage.setItem('user',JSON.stringify(response.data.user))
       }
       return response.data;
     } catch (error) {
@@ -79,6 +70,7 @@ const AuthProvider = ({ children }) => {
       setUser(null);
       Cookies.remove('access_token');
       Cookies.remove('refresh_token');
+      localStorage.removeItem('user');
     } catch (error) {
       console.error('Logout error:', error);
     }

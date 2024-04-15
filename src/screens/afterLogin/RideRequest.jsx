@@ -14,7 +14,6 @@ export default function RideRequest() {
   return (
     <div>
       <button onClick={handleOpen}>TAG ALONG</button>
-      {console.log(window.innerWidth)}
       <Modal
         open={open}
         onClose={handleClose}
@@ -72,7 +71,7 @@ export default function RideRequest() {
                         disablePortal
                         id="combo-box-demo"
                         sx={{width:'100%'}}
-                        options={[1,2,3]}
+                        options={['1','2','3']}
                         renderInput={(params) => <TextField {...params} label="Requested No.of Seats" />}
                     />
                     <TextField

@@ -25,7 +25,7 @@ export default function DriverPortal() {
 
     return(
         <>
-        <div className='rides-container'>
+        <div className='dashboard-container'>
             <h2 style={{fontWeight:'bold'}}>
                 Rides
             </h2>

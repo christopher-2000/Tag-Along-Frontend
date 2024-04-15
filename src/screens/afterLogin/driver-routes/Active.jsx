@@ -1,5 +1,13 @@
+import ActiveListView from "../../../components/ActiveListView";
+
 export default function Active(){
     return(
-        <h1>Active</h1>
+        <div>
+            <br />
+            <br />
+            <ActiveListView />
+            <ActiveListView />
+            <ActiveListView />
+        </div>
     )
 }

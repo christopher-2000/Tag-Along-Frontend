@@ -40,7 +40,7 @@
   color:white
 }
 .dark-blue-back{
-  background-color: #16457C;
+  background-color: #01112A;
   color:white
 }
 
@@ -77,6 +77,9 @@
 .silhouette{
   width: 100%;
   height: 100%;
+}
+.translucent{
+  opacity: 0.5;
 }
 
 .inline{
@@ -149,4 +152,22 @@ button:hover {
   background-color: #ffffff; /* Background color for the form box */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow to the box */
   width: 80%;
+}
+
+.deleteicon{
+  border: 1px solid rgb(255, 255, 255);
+  padding: 0.5%;
+  border-radius: 5px;
+  background-color: white;
+  color: red;
+  border: 1px solid red;
+  width: fit-content;
+  padding-bottom: 0;
+  transition: background 0.3s ease;
+}
+
+.deleteicon:hover{
+  background-color: red;
+  color: white;
+  border: 1px solid red;
 }

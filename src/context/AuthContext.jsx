@@ -37,7 +37,7 @@ const AuthProvider = ({ children }) => {
         withCredentials: true
       }
     try {
-      const response = await axios.get(baseURL + 'getuserprofile/', config);
+      const response = await axios.get('/api/getuserprofile/', config);
       if (response.data) {
         setIsLoggedIn(true);
         setUser(response.data);
@@ -50,7 +50,7 @@ const AuthProvider = ({ children }) => {
   
   const login = async (email, password) => {
     try {
-      const response = await axios.post(baseURL + 'loginuser/', { email, password }, { withCredentials: true });
+      const response = await axios.post('/api/loginuser/', { email, password }, { withCredentials: true });
       if (response.data.success) {
         setIsLoggedIn(true);
         setUser(response.data.user);
@@ -64,7 +64,7 @@ const AuthProvider = ({ children }) => {
   };
   const signup = async (username, email, password) => {
     try {
-      const response = await axios.post(baseURL + 'createuser/', { username, email, password }, { withCredentials: true });
+      const response = await axios.post('/api/createuser/', { username, email, password }, { withCredentials: true });
       if (response.data.success) {
         setIsLoggedIn(true);
         setUser(response.data.user);
@@ -79,7 +79,7 @@ const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await axios.post(baseURL + 'logoutuser/', null, { withCredentials: true });
+      await axios.post('/api/logoutuser/', null, { withCredentials: true });
       setIsLoggedIn(false);
       setUser(null);
       Cookies.remove('access_token');

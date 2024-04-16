@@ -62,6 +62,20 @@ const AuthProvider = ({ children }) => {
       return false;
     }
   };
+  const signup = async (username, email, password) => {
+    try {
+      const response = await axios.post(baseURL + 'createuser/', { username, email, password }, { withCredentials: true });
+      if (response.data.success) {
+        setIsLoggedIn(true);
+        setUser(response.data.user);
+        localStorage.setItem('user',JSON.stringify(response.data.user))
+      }
+      return response.data;
+    } catch (error) {
+      console.error('Signup error:', error);
+      return false;
+    }
+  };
 
   const logout = async () => {
     try {
@@ -110,7 +124,7 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, user, login, logout, updateUserProfile }}>
+    <AuthContext.Provider value={{ isLoggedIn, user, login,signup, logout, updateUserProfile }}>
       {children}
     </AuthContext.Provider>
   );

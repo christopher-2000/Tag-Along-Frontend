@@ -8,6 +8,7 @@ const RidesContext = createContext()
 const RidesProvider = ({children}) => {
     const {user} = useContext(AuthContext)
     const [cars, setCars] = useState([])
+    const [recentRides, setRecentRides] = useState([]);
 
     const createride = async (data) => {
         
@@ -36,9 +37,18 @@ const RidesProvider = ({children}) => {
         }
     }
 
+    const fetchRecentRides = async () => {
+        try {
+          const response = await axios.get('/api/rides/rides_list/',{withCredentials:true});
+          setRecentRides(response.data);
+        } catch (error) {
+          console.error('Error fetching recent rides:', error);
+        }
+      };
+
 
     return(
-        <RidesContext.Provider value={{ createride }}>
+        <RidesContext.Provider value={{ createride, recentRides, fetchRecentRides }}>
             {children}
         </RidesContext.Provider>
     )

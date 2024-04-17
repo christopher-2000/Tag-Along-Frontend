@@ -14,15 +14,21 @@ import './styles/dashboard.css'
 import { Height } from "@mui/icons-material";
 import RideListView from "../../components/RideListView";
 import CreateRide from "./CreateRide";
+import { RidesContext } from "../../context/RidesContext";
 
 export default function Dashboard() {
     const { user, logout } = useContext(AuthContext);
+    const {fetchRecentRides, recentRides} = useContext(RidesContext)
     const navigate = useNavigate();
 
     const handleLogout = () => {
         // Call the logout function from AuthContext
         logout();
     };
+
+    useEffect(() => {
+        fetchRecentRides();
+      }, []);
 
     return (
         <>
@@ -60,17 +66,18 @@ export default function Dashboard() {
             <h2 style={{fontWeight:'bold'}}>Search Results</h2>
 
             <br/><br/>
+            {/* <RideListView />
             <RideListView />
-            <RideListView />
-            <RideListView />
+            <RideListView /> */}
         </div>
+
         <div className="dashboard-container">
             <h2 style={{fontWeight:'bold'}}>Most Recent Rides</h2>
 
-            <br/><br/>
-            <RideListView />
-            <RideListView />
-            <RideListView />
+            {recentRides.length !== 0 && recentRides.map(ride => (
+                <RideListView key={ride.id} id={ride.id} data={ride} />
+            ))}
+
         </div>
         
 

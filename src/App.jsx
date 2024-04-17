@@ -22,6 +22,7 @@ import Requested from './screens/afterLogin/passenger-routes/Requests';
 import PassengerHistory from './screens/afterLogin/passenger-routes/History';
 import CreateRide from './screens/afterLogin/CreateRide';
 import Profile from './screens/afterLogin/Profile';
+import { RidesProvider } from './context/RidesContext';
 
 
 const router = createBrowserRouter([
@@ -104,10 +105,12 @@ const router = createBrowserRouter([
 function App() {
   return(
     <AuthProvider>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
       <TokenRefresher />
-    <RouterProvider router={router} />
-    </LocalizationProvider>
+      <RidesProvider>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <RouterProvider router={router} />
+        </LocalizationProvider>
+      </RidesProvider>
     </AuthProvider>
   )
 }

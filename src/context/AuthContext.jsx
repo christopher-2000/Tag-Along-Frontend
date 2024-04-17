@@ -1,7 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { baseURL } from '../Config';
 import { json } from 'react-router-dom';
 
 const AuthContext = createContext();

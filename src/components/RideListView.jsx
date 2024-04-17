@@ -15,13 +15,24 @@ export default function RideListView({data}){
         seats:data.available_seats,
         price:data.price_per_head,
         driver:data.driver.username,
-        car:data.car.model
-
+        car:data.car.model,
+        id:data.id,
+        duration:{
+            hours:0,
+            minutes:0
+        }
     }
+    const startDate = new Date(data.starttime);
+    const endDate = new Date(data.endtime);
+    const durationInMillis = endDate.getTime() - startDate.getTime();
+
+    content.duration.hours = Math.floor(durationInMillis / (1000 * 60 * 60));
+    content.duration.minutes = Math.floor((durationInMillis % (1000 * 60 * 60)) / (1000 * 60));
+
     return(
         <>
             <div className="ride-list-view">
-            <h5><IonIcon icon={calendarOutline} /> {content.date} </h5><br />
+            <h5><IonIcon icon={calendarOutline} /> {content.date} | RideID #{content.id}</h5><br />
             
                 <div className='ridelist-body'>
                     <div className='fromto'>
@@ -30,8 +41,8 @@ export default function RideListView({data}){
                             <h5>{content.from}</h5>
                         </div>
                         <div className='duration center'>
-                            <h6>5 Hours</h6>
-                            <h5>{"------>"}</h5>
+                            <h6>{content.duration.hours}H {content.duration.minutes}M</h6>
+                            <h5>{"--->"}</h5>
                         </div>
                         <div className='to center'>
                             <h5 className='bold'>{content.endtime}</h5>
@@ -61,7 +72,7 @@ export default function RideListView({data}){
                         </div>
                     </div>
 
-                    <RideRequest />
+                    <RideRequest data={content} />
 
                 </div>
             </div>

@@ -1,6 +1,6 @@
 import { Autocomplete, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material';
 import { DatePicker, TimePicker } from '@mui/x-date-pickers';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import SyncAltIcon from '@mui/icons-material/SyncAlt';
 
 import './styles/createride.css'
@@ -8,25 +8,34 @@ import './styles/dashboard.css'
 import BackButton from '../../components/BackButton';
 
 import Modal from '@mui/material/Modal';
+import { RidesContext } from '../../context/RidesContext';
+import CustomSnackbar from '../../components/SnackBar';
 
 
 export default function CreateRide() {
+  const [openSnack, setOpenSnack] = useState(false);
+  const [message, setMessage] = useState('');
+  const [severity, setSeverity] = useState('success'); // Default to success
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const { createride } = useContext(RidesContext);
 
   const [formData, setFormData] = useState({
     from: '',
     to: '',
-    date: '',
-    time: '',
+    date: null,
+    departingTime: null,
+    arrivalTime: null,
+    vehicle: '',
     seats: '',
-    fuelPrice: '',
     pricePerHead: ''
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log(name, value)
     setFormData(prevState => ({
       ...prevState,
       [name]: value
@@ -34,10 +43,23 @@ export default function CreateRide() {
   };
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Here you can implement the logic to post the ride data to your backend or handle it as needed
-    console.log(formData);
+    try{
+      await createride(formData);
+      handleClose();
+
+      setSeverity('success');
+      setMessage('Success! Your Ride was created successfully.');
+      setOpenSnack(true);
+    }
+    catch{
+      console.log('Something went wrong')
+      setSeverity('error');
+      setMessage('Error! Something went wrong.');
+      setOpenSnack(true);
+    }
   };
 
   return (
@@ -57,23 +79,23 @@ export default function CreateRide() {
           <form onSubmit={handleSubmit}>
               <div className='responsive-inline'>
                   
-                  <TextField id="outlined-basic" label="From" variant="outlined" fullWidth />
+                  <TextField id="outlined-basic" label="From" variant="outlined" name='from' onChange={handleChange} fullWidth />
                   
 
                   <SyncAltIcon style={{ margin: '10px 10px' }} />
 
                   
-                  <TextField id="outlined-basic" label="To" variant="outlined" fullWidth />
+                  <TextField id="outlined-basic" label="To" variant="outlined" name='to' onChange={handleChange} fullWidth />
                   
               </div>
               
               <div className='responsive-inline'>
                   
-                      <DatePicker label='Date of Travel'  fullWidth />
+                      <DatePicker name='date' label='Date of Travel' onChange={(date) => handleChange({target: { name: "date", value: date }})}  fullWidth />
                   
-                      <TimePicker label='Departing Time'  fullWidth />
+                      <TimePicker name='departingTime' label='Departing Time' onChange={(departingtime) => handleChange({target: { name: "departingTime", value: departingtime }})}  fullWidth />
                   
-                      <TimePicker label='Arrival Time'  fullWidth />
+                      <TimePicker name='arrivalTime' label='Arrival Time' onChange={(arrivaltime) => handleChange({target: { name: "arrivalTime", value: arrivaltime }})}  fullWidth />
                   
               </div>
               
@@ -83,13 +105,19 @@ export default function CreateRide() {
                     id="combo-box-demo"
                     sx={{width:'100%',m:1}}
                     options={['Suzuki','dodge']}
-                    renderInput={(params) => <TextField {...params} label="Vehicle" />}
+                    onChange={(event, value) => setFormData(prevState => ({
+                      ...prevState,
+                      vehicle: value
+                    }))}
+                    renderInput={(params) => <TextField {...params} name='vehicle' label="Vehicle" />}
                   />
 
                   <TextField
                       label="No of seats"
                       id="outlined-start-adornment"
                       sx={{ m: 1 }}
+                      name='seats'
+                      onChange={handleChange}
                   />
 
                   <TextField
@@ -99,6 +127,8 @@ export default function CreateRide() {
                       InputProps={{
                           startAdornment: <InputAdornment position="start">$</InputAdornment>,
                       }}
+                      name='pricePerHead'
+                      onChange={handleChange}
                   />
               </div>
               
@@ -110,6 +140,12 @@ export default function CreateRide() {
           </form>
           </div>
       </Modal>
+      <CustomSnackbar
+        open={openSnack}
+        setOpen={setOpenSnack}
+        message={message}
+        severity={severity}
+      />
     </div>
   );
 }

@@ -51,10 +51,9 @@ export default function RideListView({data}){
                     </div>
 
                     <div className='driver-car center'>
-                        
                             <h5 className='bold'>Driver & Car</h5>
                             <div className='lowflex'>
-                                <h5>{content.driver}</h5><h5> | {content.car}</h5>
+                                <h5>{content.driver} | </h5><h5>| {content.car}</h5>
                             </div>
                             
                         
@@ -68,7 +67,7 @@ export default function RideListView({data}){
 
                         <div className='Rate/Head center'>
                             <h5 className='bold'>Rate</h5>
-                            <h5 className='price'>${content.price} /head</h5>
+                            <h5 className='price'><span style={{color:'green'}}>${content.price}</span> /head</h5>
                         </div>
                     </div>
 

@@ -20,7 +20,6 @@ import CustomCard from "../../components/CustomCard";
 export default function Dashboard() {
     const { user, logout } = useContext(AuthContext);
     const {fetchRecentRides, recentRides} = useContext(RidesContext)
-    const navigate = useNavigate();
 
     const handleLogout = () => {
         // Call the logout function from AuthContext
@@ -37,6 +36,7 @@ export default function Dashboard() {
             <h2 style={{fontWeight:'bold', color:'white'}}>Dashboard</h2> 
             <br/><br/><br/>
             <div className="search-box">
+                <h3 style={{fontWeight:'bold'}}>Search for a Ride</h3>
                 <h5>Where do you wanna go {user!=null && user.username} ? </h5>
 
                 <br/>

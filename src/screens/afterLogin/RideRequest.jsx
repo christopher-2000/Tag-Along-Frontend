@@ -1,15 +1,60 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { IonIcon } from '@ionic/react';
 import { calendar, calendarOutline } from 'ionicons/icons';
 import { Autocomplete, TextField } from '@mui/material';
+import { RidesContext } from '../../context/RidesContext';
+import CustomSnackbar from '../../components/SnackBar';
 
 
 export default function RideRequest({data}) {
+    const [openSnack, setOpenSnack] = useState(false);
+    const [message, setMessage] = useState('');
+    const [severity, setSeverity] = useState('success'); // Default to success
+
+    
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const {createRideRequest} = React.useContext(RidesContext)
+  
+  const [formData, setFormData] = React.useState({
+    seats : '',
+    comments:'',
+    ride:data.id
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    console.log(name, value)
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    
+    await createRideRequest(formData)
+    .then(() => {
+        handleClose();
+        setSeverity('success');
+        setMessage('Success! Your Ride Request was created successfully.');
+        setOpenSnack(true);
+      })
+      .catch((error) => {
+        console.log('Something went wrong:', error);
+        setSeverity('error');
+        setMessage('Error! Something went wrong.');
+        setOpenSnack(true);
+      });
+        
+  } 
 
   return (
     <div>
@@ -37,7 +82,7 @@ export default function RideRequest({data}) {
                         <h5>{data.from}</h5>
                     </div>
                     <div className='duration center'>
-                        <h6>5 Hours</h6>
+                        <h6>{data.duration.hours}H {data.duration.minutes}M</h6>
                         <h5>{"--->"}</h5>
                     </div>
                     <div className='to center' style={{width:'fit-content'}}>
@@ -67,30 +112,46 @@ export default function RideRequest({data}) {
                     </div>
                 </div>
                 
-                <div className='responsive-inline'>
-                    <Autocomplete
-                        disablePortal
-                        id="combo-box-demo"
-                        sx={{width:'100%'}}
-                        options={['1','2','3']}
-                        renderInput={(params) => <TextField {...params} label="Requested No.of Seats" />}
-                    />
-                    <TextField
-                        label="Additional Comments"
-                        id="outlined-start-adornment"
-                        sx={{ m: 1 }}
-                        fullWidth
-                    />
-                </div>
+                <form id='riderequest' onSubmit={handleSubmit}>
+                    <div className='responsive-inline'>
+                        <Autocomplete
+                            disablePortal
+                            id="combo-box-demo"
+                            sx={{width:'100%'}}
+                            options={['1','2','3']}
+                            onChange={(event, value) => setFormData(prevState => ({
+                                ...prevState,
+                                seats: value
+                              }))}
+                            
+                            renderInput={(params) => <TextField {...params} name='seats' label="Requested No.of Seats" />}
+                        />
+                        <TextField
+                            label="Additional Comments"
+                            id="outlined-start-adornment"
+                            sx={{ m: 1 }}
+                            name='comments'
+                            onChange={handleChange}
+                            fullWidth
+                        />
+                    </div>
 
-                <div className='inline-200'>
-                <button style={{margin:'1%'}} onClick={handleClose} className='secondaryblue-back'>CANCEL</button>
-                <button style={{margin:'1%'}} type="submit">REQUEST</button>
-              </div>
+                    <div className='inline-200'>
+                        <button style={{margin:'1%'}} onClick={handleClose} className='secondaryblue-back'>CANCEL</button>
+                        <button style={{margin:'1%'}}  type="submit">REQUEST</button>
+                    </div>
+                </form>
+              
             </div>
                 
         </div>
       </Modal>
+      <CustomSnackbar
+        open={openSnack}
+        setOpen={setOpenSnack}
+        message={message}
+        severity={severity}
+      />
     </div>
   );
 }

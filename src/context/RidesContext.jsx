@@ -46,9 +46,25 @@ const RidesProvider = ({children}) => {
         }
       };
 
+      const createRideRequest = async (data) => {
+        const req_data = {
+           "ride":data.ride,
+           "comments":data.comments,
+           "seats_requested":parseInt(data.seats),
+           "request_status":"Pending"
+        }
+        try {
+          console.log(req_data)
+          const response = await axios.post('/api/rides/ride_requests/create/', req_data,{withCredentials:true});
+          console.log('Ride Request Created Successfully')
+        } catch (error) {
+          console.error('Error Creating Ride Request:', error);
+        }
+      }
+
 
     return(
-        <RidesContext.Provider value={{ createride, recentRides, fetchRecentRides }}>
+        <RidesContext.Provider value={{ createride, recentRides, fetchRecentRides, createRideRequest }}>
             {children}
         </RidesContext.Provider>
     )

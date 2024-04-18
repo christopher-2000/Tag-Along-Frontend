@@ -40,19 +40,19 @@ export default function RideRequest({data}) {
     e.preventDefault();
 
     
-    await createRideRequest(formData)
-    .then(() => {
+    const success = await createRideRequest(formData)
+    if(success) {
         handleClose();
         setSeverity('success');
         setMessage('Success! Your Ride Request was created successfully.');
         setOpenSnack(true);
-      })
-      .catch((error) => {
-        console.log('Something went wrong:', error);
+      }
+      if(!success){
+        console.log('Something went wrong:');
         setSeverity('error');
         setMessage('Error! Something went wrong.');
         setOpenSnack(true);
-      });
+      };
         
   } 
 

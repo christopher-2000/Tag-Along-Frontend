@@ -31,9 +31,11 @@ const RidesProvider = ({children}) => {
     
             // Log the response data
             console.log('Ride created successfully:', response.data);
+            return true
         } catch (error) {
             // If an error occurs during the request, log it
             console.error('Error creating ride:', error);
+            return false
         }
     }
 
@@ -57,8 +59,10 @@ const RidesProvider = ({children}) => {
           console.log(req_data)
           const response = await axios.post('/api/rides/ride_requests/create/', req_data,{withCredentials:true});
           console.log('Ride Request Created Successfully')
+          return true
         } catch (error) {
           console.error('Error Creating Ride Request:', error);
+          return false
         }
       }
 

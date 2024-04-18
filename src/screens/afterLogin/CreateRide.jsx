@@ -43,23 +43,23 @@ export default function CreateRide() {
   };
 
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // Here you can implement the logic to post the ride data to your backend or handle it as needed
-    try{
-      await createride(formData);
-      handleClose();
-
-      setSeverity('success');
-      setMessage('Success! Your Ride was created successfully.');
-      setOpenSnack(true);
-    }
-    catch{
-      console.log('Something went wrong')
-      setSeverity('error');
-      setMessage('Error! Something went wrong.');
-      setOpenSnack(true);
-    }
+  const handleSubmit = async (e) => {                                                                 
+    e.preventDefault();                                                                                
+    // Here you can implement the logic to post the ride data to your backend or handle it as needed  
+      
+      const success = await createride(formData)
+      if(success) {
+        handleClose();
+        setSeverity('success');
+        setMessage('Success! Your Ride was created successfully.');
+        setOpenSnack(true);
+      }
+      if(!success){
+        console.log('Something went wrong:');
+        setSeverity('error');
+        setMessage('Error! Something went wrong.');
+        setOpenSnack(true);
+      }
   };
 
   return (

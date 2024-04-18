@@ -124,7 +124,7 @@ export default function RideRequest({data}) {
                                 seats: value
                               }))}
                             
-                            renderInput={(params) => <TextField {...params} name='seats' label="Requested No.of Seats" />}
+                            renderInput={(params) => <TextField {...params} name='seats' label="Requested No.of Seats" required/>}
                         />
                         <TextField
                             label="Additional Comments"

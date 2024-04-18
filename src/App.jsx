@@ -42,7 +42,14 @@ const router = createBrowserRouter([
     },
     {
       path:"go",
-      element: (<AuthWrapper><RootLayout /></AuthWrapper>),
+      element: (
+        <AuthWrapper>
+          <TokenRefresher />
+          <RidesProvider>
+            <RootLayout />
+          </RidesProvider>
+        </AuthWrapper>
+        ),
       children:[
         {
           path:'',
@@ -105,12 +112,9 @@ const router = createBrowserRouter([
 function App() {
   return(
     <AuthProvider>
-      <TokenRefresher />
-      <RidesProvider>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <RouterProvider router={router} />
         </LocalizationProvider>
-      </RidesProvider>
     </AuthProvider>
   )
 }

@@ -9,6 +9,14 @@ const RidesProvider = ({children}) => {
     const {user} = useContext(AuthContext)
     const [cars, setCars] = useState([])
     const [recentRides, setRecentRides] = useState([]);
+    const [myrides, setMyRides] = useState([])
+    const [refreshRides, setRefreshRides] = useState(false);
+
+    const changeRefreshRides = (value) => {
+      setRefreshRides(value)
+    }
+
+
 
     const createride = async (data) => {
         
@@ -39,6 +47,75 @@ const RidesProvider = ({children}) => {
         }
     }
 
+    const editRide = async (ride_id, data) => {
+      console.log(ride_id, data)
+      const parsed_data = {
+        car: 1,
+        starting_point: data.from || undefined,
+        destination: data.to || undefined,
+        date: data.date ? data.date.toISOString().split('T')[0] : undefined,
+        starttime: data.departingTime ? data.departingTime.toISOString().slice(0, 19) : undefined,
+        endtime: data.arrivalTime ? data.arrivalTime.toISOString().slice(0, 19) : undefined,
+        price_per_head: data.pricePerHead !== null && data.pricePerHead !== "" ? parseFloat(data.pricePerHead) : undefined,
+        available_seats: data.seats !== null && data.seats !== "" ? parseInt(data.seats) : undefined,
+        ride_status: "Scheduled",
+        passengers: []
+      };
+      
+        const req_data = {
+          "ride_id":ride_id,
+          "update":{
+
+          }
+        };
+
+        console.log(req_data)
+
+        for (const [key, value] of Object.entries(parsed_data)) {
+          if (value !== null && value !== "" && value!==undefined) {
+            req_data["update"][key] = value;
+          }
+        }
+      
+      try {
+          // Make a POST request to the /api/create/ endpoint
+          const response = await axios.patch('/api/rides/update/', req_data, { withCredentials: true });
+  
+          // Log the response data
+          console.log('Ride Updated successfully:', response.data);
+          return true
+      } catch (error) {
+          // If an error occurs during the request, log it
+          console.error('Error creating ride:', error);
+          return false
+      }
+  }
+
+  const deleteRide = async (ride_id) => {
+    const req_data = {
+      "ride_id":ride_id,
+      "update":{
+          "ride_status":"Deleted"
+      }
+    };
+
+    console.log(req_data)
+
+    try {
+        // Make a POST request to the /api/create/ endpoint
+        const response = await axios.patch('/api/rides/update/', req_data, { withCredentials: true });
+
+        // Log the response data
+        console.log('Ride Deleted successfully:', response.data);
+        return true
+    } catch (error) {
+        // If an error occurs during the request, log it
+        console.error('Error Deleting ride:', error);
+        return false
+    }
+  }
+
+
     const fetchRecentRides = async () => {
         try {
           const response = await axios.get('/api/rides/rides_list/',{withCredentials:true});
@@ -67,8 +144,21 @@ const RidesProvider = ({children}) => {
       }
 
 
+      const fetchMyRides = async () => {
+        try {
+          const response = await axios.get('/api/rides/myrides_list/', {withCredentials:true});
+          console.log('Successfully fetched rides offered by me')
+          setMyRides(response.data)
+          return true
+        } catch (error) {
+          console.error('Error Creating Ride Request:', error);
+          return false
+        }
+      }
+
+
     return(
-        <RidesContext.Provider value={{ createride, recentRides, fetchRecentRides, createRideRequest }}>
+        <RidesContext.Provider value={{ createride, recentRides, fetchRecentRides, createRideRequest, fetchMyRides, myrides, editRide, deleteRide, refreshRides, changeRefreshRides }}>
             {children}
         </RidesContext.Provider>
     )

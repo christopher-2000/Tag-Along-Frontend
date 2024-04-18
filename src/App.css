@@ -154,20 +154,35 @@ button:hover {
   width: 80%;
 }
 
-.deleteicon{
+.iconbutton{
+  display: flex;
   border: 1px solid rgb(255, 255, 255);
-  padding: 0.5%;
+  padding: 5%;
   border-radius: 5px;
   background-color: white;
+  width: fit-content;
+  transition: background 0.3s ease;
+  align-items: center;
+}
+
+.deleteicon{
   color: red;
   border: 1px solid red;
-  width: fit-content;
-  padding-bottom: 0;
-  transition: background 0.3s ease;
 }
 
 .deleteicon:hover{
   background-color: red;
   color: white;
   border: 1px solid red;
+}
+
+.editicon{
+  color: rgb(6, 34, 158);
+  border: 1px solid rgb(6, 34, 158);
+}
+
+.editicon:hover{
+  background-color: rgb(6, 34, 158);
+  color: white;
+  border: 1px solid rgb(6, 34, 158);
 }

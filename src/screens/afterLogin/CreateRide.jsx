@@ -20,7 +20,8 @@ export default function CreateRide() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { createride } = useContext(RidesContext);
+
+  const { createride,changeRefreshRides } = useContext(RidesContext);
 
   const [formData, setFormData] = useState({
     from: '',
@@ -53,6 +54,7 @@ export default function CreateRide() {
         setSeverity('success');
         setMessage('Success! Your Ride was created successfully.');
         setOpenSnack(true);
+        changeRefreshRides(true);
       }
       if(!success){
         console.log('Something went wrong:');

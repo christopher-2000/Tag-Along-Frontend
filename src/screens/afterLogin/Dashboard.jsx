@@ -14,15 +14,21 @@ import './styles/dashboard.css'
 import { Height } from "@mui/icons-material";
 import RideListView from "../../components/RideListView";
 import CreateRide from "./CreateRide";
+import { RidesContext } from "../../context/RidesContext";
+import CustomCard from "../../components/CustomCard";
 
 export default function Dashboard() {
     const { user, logout } = useContext(AuthContext);
-    const navigate = useNavigate();
+    const {fetchRecentRides, recentRides} = useContext(RidesContext)
 
     const handleLogout = () => {
         // Call the logout function from AuthContext
         logout();
     };
+
+    useEffect(() => {
+        fetchRecentRides();
+      }, []);
 
     return (
         <>
@@ -30,6 +36,7 @@ export default function Dashboard() {
             <h2 style={{fontWeight:'bold', color:'white'}}>Dashboard</h2> 
             <br/><br/><br/>
             <div className="search-box">
+                <h3 style={{fontWeight:'bold'}}>Search for a Ride</h3>
                 <h5>Where do you wanna go {user!=null && user.username} ? </h5>
 
                 <br/>
@@ -56,21 +63,37 @@ export default function Dashboard() {
             </div>
         </div>
 
-        <div className="dashboard-container">
+        {/* <div className="dashboard-container">
             <h2 style={{fontWeight:'bold'}}>Search Results</h2>
 
             <br/><br/>
-            <RideListView />
-            <RideListView />
-            <RideListView />
+            
+
+        </div> */}
+        
+        <div className="dashboard-container inline">
+            <CustomCard 
+                imageSrc={'https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,w_698,h_698/v1684855112/assets/96/4dd3d1-94e7-481e-b28c-08d59353b9e0/original/earner-illustra.png'}
+                title={'Driver Portal'}
+                description={'Checkout Driver Portal to create rides and seamlessly track requests'}
+                to={'driver'}
+                />
+            <CustomCard 
+                imageSrc={'https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,w_698,h_698/v1696243800/assets/62/3b076a-3406-4f3b-89de-2cf1a2ccb907/original/uber-one.jpg'}
+                title={'Passenger Portal'}
+                description={'Track your requests view your ride history'}
+                to={'passenger'}
+                />
         </div>
+        
+
         <div className="dashboard-container">
             <h2 style={{fontWeight:'bold'}}>Most Recent Rides</h2>
 
-            <br/><br/>
-            <RideListView />
-            <RideListView />
-            <RideListView />
+            {recentRides.length !== 0 && recentRides.slice().reverse().map(ride => (
+                <RideListView key={ride.id} id={ride.id} data={ride} />
+            ))}
+
         </div>
         
 

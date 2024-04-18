@@ -72,7 +72,7 @@ const Login = () => {
       setEmailError(true);
       return; // Exit early if email is invalid
     }
-
+    
     // Handle form submission logic here
     if(!emailError && !passwordError){
       console.log('No errors in email and password');

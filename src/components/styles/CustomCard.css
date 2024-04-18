@@ -1,0 +1,64 @@
+.custom-card {
+    display: flex;
+    width: 500px;
+    border: 1px solid rgb(181, 181, 181);
+    padding: 1%;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+    overflow: hidden;
+    height: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .custom-card:hover {
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .custom-card img {
+    width: 100%;
+    height: auto;
+    align-self: center; /* Vertically center image */
+    
+  }
+  
+  .card-image {
+    overflow: hidden;
+    width: 50%;
+    padding: 0;
+    transition: transform 0.3s ease;
+    max-width: 150px;
+    
+    display: flex;
+    justify-content: center; /* Horizontally center content */
+    align-items: center; /* Vertically center content */
+  }
+  
+  .card-content, .card-arrow {
+    padding-left: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center content */
+  }
+  
+  /* Add hover animation for card */
+  .custom-card:hover .card-image {
+    transform: scale(1.1);
+  }
+  
+  @media screen and (max-width: 560px) {
+    .custom-card {
+      width: 100%; /* Adjust width to fit smaller screens */
+    }
+    
+    .card-content {
+      padding-left: 3%; /* Adjust padding for smaller screens */
+    }
+    .custom-card h3{
+        font-size: 1rem;
+    }
+    .custom-card p{
+        font-size: 0.8rem;
+    }
+
+  }

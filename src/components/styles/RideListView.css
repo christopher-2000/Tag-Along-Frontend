@@ -7,6 +7,9 @@
     font-size: clamp(12px, 5vw, 24px);
     margin-bottom: 2%;
 }
+.ride-list-view h5{
+    font-size: 1.1rem;
+}
 
 .ridelist-body{
     display: flex;
@@ -45,17 +48,20 @@
     }
     .fromto{
         width: 100%;
-        margin-bottom: 2%;
+        margin-bottom: 10%;
     }
     .driver-car{
-        display: flex;
         width: 100%;
         justify-content: space-around;
-        margin-bottom: 2%;
+        margin-bottom: 10%;
     }
     .seatrate{
         width: 100%;
         
         margin-bottom: 2%;
+    }
+    .lowflex{
+        display: flex;
+        justify-content: center;
     }
 }

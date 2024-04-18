@@ -8,6 +8,7 @@ const RidesContext = createContext()
 const RidesProvider = ({children}) => {
     const {user} = useContext(AuthContext)
     const [cars, setCars] = useState([])
+    const [recentRides, setRecentRides] = useState([]);
 
     const createride = async (data) => {
         
@@ -30,15 +31,44 @@ const RidesProvider = ({children}) => {
     
             // Log the response data
             console.log('Ride created successfully:', response.data);
+            return true
         } catch (error) {
             // If an error occurs during the request, log it
             console.error('Error creating ride:', error);
+            return false
         }
     }
 
+    const fetchRecentRides = async () => {
+        try {
+          const response = await axios.get('/api/rides/rides_list/',{withCredentials:true});
+          setRecentRides(response.data);
+        } catch (error) {
+          console.error('Error fetching recent rides:', error);
+        }
+      };
+
+      const createRideRequest = async (data) => {
+        const req_data = {
+           "ride":data.ride,
+           "comments":data.comments,
+           "seats_requested":parseInt(data.seats),
+           "request_status":"Pending"
+        }
+        try {
+          console.log(req_data)
+          const response = await axios.post('/api/rides/ride_requests/create/', req_data,{withCredentials:true});
+          console.log('Ride Request Created Successfully')
+          return true
+        } catch (error) {
+          console.error('Error Creating Ride Request:', error);
+          return false
+        }
+      }
+
 
     return(
-        <RidesContext.Provider value={{ createride }}>
+        <RidesContext.Provider value={{ createride, recentRides, fetchRecentRides, createRideRequest }}>
             {children}
         </RidesContext.Provider>
     )

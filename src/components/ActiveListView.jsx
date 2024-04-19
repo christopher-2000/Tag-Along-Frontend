@@ -7,6 +7,7 @@ import { Edit } from '@mui/icons-material'
 import { RidesContext } from '../context/RidesContext'
 import { useContext, useState } from 'react'
 import CustomSnackbar from './SnackBar'
+import ViewRequests from '../screens/afterLogin/driver-routes/ViewRequests'
 
 
 export default function ActiveListView({data}){
@@ -65,14 +66,14 @@ export default function ActiveListView({data}){
                 severity={severity}
             />
             <div className="ride-list-view">
-            <div style={{width:'100%', display:'flex', justifyContent:'space-between', alignItems:'center'}}>
-                <h5><IonIcon icon={calendarOutline} /> {content.date} | RideID #{content.id}</h5><br />
-                <div style={{display:'flex'}}>
-                    <EditRide data={content}/>
-                    <button style={{margin:'5px'}} className='iconbutton deleteicon' onClick={handleDelete}><IonIcon icon={trashOutline} /></button>
+                <div style={{width:'100%', display:'flex', justifyContent:'space-between', alignItems:'center'}}>
+                    <h5><IonIcon icon={calendarOutline} /> {content.date} | RideID #{content.id}</h5><br />
+                    <div style={{display:'flex'}}>
+                        <EditRide data={content}/>
+                        <button style={{margin:'5px'}} className='iconbutton deleteicon' onClick={handleDelete}><IonIcon icon={trashOutline} /></button>
+                    </div>
                 </div>
-            </div>
-            <div className='ridelist-body'>
+                <div className='ridelist-body'>
                     <div className='fromto'>
                         <div className='from center'>
                             <h5 className='bold'>{content.startTime}</h5>
@@ -108,6 +109,10 @@ export default function ActiveListView({data}){
                             <h5 className='price'><span style={{color:'green'}}>${content.price}</span> /head</h5>
                         </div>
                     </div>
+                </div>
+
+                <div style={{display:'flex', justifyContent:'right'}}>
+                    <ViewRequests />
                 </div>
             </div>
         </>

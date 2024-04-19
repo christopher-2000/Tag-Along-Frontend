@@ -32,7 +32,7 @@ export default function Dashboard() {
 
     return (
         <>
-        <div className="dashboard-container wavy-image-back"> {/* Apply inline styles */} 
+        <div style={{borderTop:'1px solid white'}} className="dashboard-container wavy-image-back"> {/* Apply inline styles */} 
             <h2 style={{fontWeight:'bold', color:'white'}}>Dashboard</h2> 
             <br/><br/><br/>
             <div className="search-box">

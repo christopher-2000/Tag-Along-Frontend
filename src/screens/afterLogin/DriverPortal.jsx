@@ -24,19 +24,19 @@ export default function DriverPortal() {
     const navigate = useNavigate()
 
     return(
-        <>
-        <div className='dashboard-container'>
-            <h2 style={{fontWeight:'bold'}}>
-                Rides
-            </h2>
-            
-            <CreateRide />
-            <br /><br />
-            <SwitchBar routes={routes} />
-            
-            <Outlet />
-            
+        <div className='white-wavy-back'>
+            <div className='dashboard-container'>
+                <h2 style={{fontWeight:'bold'}}>
+                    Driver Portal
+                </h2>
+                
+                <CreateRide />
+                <br /><br />
+                <SwitchBar routes={routes} />
+                
+                <Outlet />
+                
+            </div>
         </div>
-        </>
     )
 }

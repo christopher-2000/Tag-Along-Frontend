@@ -32,7 +32,7 @@ export default function Dashboard() {
 
     return (
         <>
-        <div className="dashboard-container city-background"> {/* Apply inline styles */} 
+        <div className="dashboard-container wavy-image-back"> {/* Apply inline styles */} 
             <h2 style={{fontWeight:'bold', color:'white'}}>Dashboard</h2> 
             <br/><br/><br/>
             <div className="search-box">
@@ -71,7 +71,7 @@ export default function Dashboard() {
 
         </div> */}
         
-        <div className="dashboard-container inline">
+        <div className="dashboard-container inline inline-500">
             <CustomCard 
                 imageSrc={'https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,w_698,h_698/v1684855112/assets/96/4dd3d1-94e7-481e-b28c-08d59353b9e0/original/earner-illustra.png'}
                 title={'Driver Portal'}

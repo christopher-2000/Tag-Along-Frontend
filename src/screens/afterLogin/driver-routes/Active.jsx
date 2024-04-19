@@ -6,6 +6,10 @@ export default function Active(){
     const {myrides, fetchMyRides, refreshRides, changeRefreshRides} = useContext(RidesContext)
 
     useEffect(() => {
+        fetchMyRides()
+    },[])
+
+    useEffect(() => {
         if(refreshRides){
             fetchMyRides()
             changeRefreshRides(false)

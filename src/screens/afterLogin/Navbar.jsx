@@ -37,7 +37,7 @@ function Navbar() {
     const iconStyle = {
         fontSize: '2rem',
         cursor: 'pointer',
-        border: isHovered ? '2px solid white' : '2px solid #053973', // Add border on hover
+        border: isHovered ? '2px solid #218ED3' : '2px solid white', // Add border on hover
         borderRadius: '10px',
         transition: 'border 0.3s ease', // Add transition for border
         padding:'0px 10px',
@@ -45,7 +45,7 @@ function Navbar() {
     };
 
     return (
-      <nav className="dark-blue-back navbar-dashboard" >
+      <nav style={{color:'white'}} className="wavy-image-back navbar-dashboard" >
         <div 
             style={iconStyle} 
             onMouseOver={() => setIsHovered(true)} 

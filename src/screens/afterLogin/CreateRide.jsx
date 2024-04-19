@@ -66,7 +66,7 @@ export default function CreateRide() {
 
   return (
     <div>
-      <button onClick={handleOpen}  className="button-centralized iceblue-back"><h2 className='bold'>+ Create Ride</h2></button>
+      <button onClick={handleOpen}  className="button-centralized wavy-image-back" style={{backgroundPosition:'120%'}} ><h2 className='bold'>+ Create Ride</h2></button>
       <Modal
         open={open}
         onClose={handleClose}

@@ -14,7 +14,6 @@ import Dashboard from './screens/afterLogin/Dashboard';
 import RootLayout from './screens/afterLogin/RootLayout';
 
 import Active from './screens/afterLogin/driver-routes/Active';
-import Requests from './screens/afterLogin/driver-routes/Requests';
 import History from './screens/afterLogin/driver-routes/History';
 import DriverPortal from './screens/afterLogin/DriverPortal';
 import Passenger from './screens/afterLogin/Passenger';
@@ -62,10 +61,6 @@ const router = createBrowserRouter([
             {
               element:<Active/>,
               index:true
-            },
-            {
-              path:'requests',
-              element:<Requests/>
             },
             {
               path:'history',

@@ -112,7 +112,7 @@ export default function ActiveListView({data}){
                 </div>
 
                 <div style={{display:'flex', justifyContent:'right'}}>
-                    <ViewRequests />
+                    <ViewRequests data={content} />
                 </div>
             </div>
         </>

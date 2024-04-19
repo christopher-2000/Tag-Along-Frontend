@@ -1,5 +1,5 @@
 import { DatePicker, TimePicker } from '@mui/x-date-pickers';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 
 //import './styles/createride.css'
@@ -11,6 +11,10 @@ import { Edit } from '@mui/icons-material';
 import { RidesContext } from '../../../context/RidesContext';
 import CustomSnackbar from '../../../components/SnackBar';
 import RequestListView from '../../../components/RequestListView';
+import { IonIcon } from '@ionic/react';
+import { close } from 'ionicons/icons';
+import { Close } from 'react-ionicons';
+import { Link } from 'react-router-dom';
 
 
 export default function ViewRequests({data}) {
@@ -21,6 +25,14 @@ export default function ViewRequests({data}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const {rideRequests, fetchRideRequests} = useContext(RidesContext)
+
+  useEffect(() => {
+    if(open){
+      fetchRideRequests(data.id)
+    }
+  },[open])
 
   return (
     <div>
@@ -34,7 +46,10 @@ export default function ViewRequests({data}) {
       >
         <div className='createrideform' style={{backgroundColor:'white'}}>
 
-            <h2 style={{fontWeight:'bold'}}>Ride # Requests</h2>
+            <div style={{display:'flex', justifyContent:'space-between' }}>
+              <h2 style={{fontWeight:'bold'}}>Ride #{data.id} Requests</h2>
+              <Link onClick={handleClose}><h2><IonIcon icon={close}/></h2></Link>
+            </div>
             
             {/* <div className='fromto center'>
                 <div className='from center' style={{width:'fit-content'}}>
@@ -51,9 +66,13 @@ export default function ViewRequests({data}) {
                 </div>
             </div> */}
             <div style={{padding:'0% 10%'}}>
-            <RequestListView />
-            <RequestListView />
-            <RequestListView />
+            {rideRequests.length !== 0 && rideRequests.slice().reverse().filter(req => req.status !== "Deleted").map(req => (
+                <RequestListView key={req.id} id={req.id} data={req} />
+            ))}
+            {
+              rideRequests.length == 0 && <h6>No Requests to show</h6>
+            }
+            
             </div>
         </div>
       </Modal>

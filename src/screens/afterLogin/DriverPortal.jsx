@@ -11,10 +11,6 @@ export default function DriverPortal() {
             path:''
         },
         {
-            text:'Requests',
-            path:'requests'
-        },
-        {
             text:'History',
             path:'history'
         },

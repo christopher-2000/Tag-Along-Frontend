@@ -58,7 +58,7 @@ export default function RideRequest({data}) {
 
   return (
     <div>
-      <button onClick={handleOpen} ><h5 style={{marginBottom:'0px'}}>TAG ALONG</h5></button>
+      <button className='wavy-image-back' style={{backgroundPosition:'100%'}} onClick={handleOpen} ><h5 style={{marginBottom:'0px'}}>TAG ALONG</h5></button>
       <Modal
         open={open}
         onClose={handleClose}

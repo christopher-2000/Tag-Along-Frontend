@@ -57,7 +57,7 @@ export default function Dashboard() {
                     </div>
 
                     <div className="item">
-                        <button>Search Rides</button>
+                        <button className="wavy-image-back" style={{backgroundPosition:'130%'}}>Search Rides</button>
                     </div>
                 </div>
             </div>

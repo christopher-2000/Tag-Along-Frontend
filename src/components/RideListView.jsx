@@ -73,10 +73,11 @@ export default function RideListView({data}){
                             <h5 className='price'><span style={{color:'green'}}>${content.price}</span> /head</h5>
                         </div>
                     </div>
-
-                    <RideRequest data={content} />
-
                 </div>
+                <div style={{display:'flex', justifyContent:'right'}}>
+                    <RideRequest data={content} />
+                </div>
+                
             </div>
         </>
     )

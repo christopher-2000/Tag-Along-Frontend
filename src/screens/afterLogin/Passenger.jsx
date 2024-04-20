@@ -16,7 +16,8 @@ export default function Passenger(){
     ]
     return(
         <>
-        <div className='rides-container'>
+        <br /><br /><br />
+        <div className='dashboard-container'>
             <h2 style={{fontWeight:'bold'}}>
                 Your Rides
             </h2>

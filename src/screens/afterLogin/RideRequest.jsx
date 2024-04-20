@@ -73,7 +73,7 @@ export default function RideRequest({data}) {
                 
                 <h4 style={{alignItems:'center'}}><IonIcon icon={calendarOutline}/> {data.date} | RideID #{data.id}</h4>
             </div>
-
+            
             <br />
             <div className='center'>
                 <div className='fromto center'>

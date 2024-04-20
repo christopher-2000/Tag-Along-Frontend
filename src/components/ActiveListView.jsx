@@ -8,6 +8,7 @@ import { RidesContext } from '../context/RidesContext'
 import { useContext, useState } from 'react'
 import CustomSnackbar from './SnackBar'
 import ViewRequests from '../screens/afterLogin/driver-routes/ViewRequests'
+import StatusTag from './StatusTag'
 
 
 export default function ActiveListView({data}){
@@ -73,6 +74,9 @@ export default function ActiveListView({data}){
                         <button style={{margin:'5px'}} className='iconbutton deleteicon' onClick={handleDelete}><IonIcon icon={trashOutline} /></button>
                     </div>
                 </div>
+
+                <StatusTag status={data.ride_status} /><br />
+                
                 <div className='ridelist-body'>
                     <div className='fromto'>
                         <div className='from center'>

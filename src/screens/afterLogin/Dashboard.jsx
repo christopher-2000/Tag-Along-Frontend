@@ -33,8 +33,9 @@ export default function Dashboard() {
     return (
         <>
         <div style={{borderTop:'1px solid white'}} className="dashboard-container wavy-image-back"> {/* Apply inline styles */} 
+            <br /><br /><br />
             <h2 style={{fontWeight:'bold', color:'white'}}>Dashboard</h2> 
-            <br/><br/><br/>
+            <br/>
             <div className="search-box">
                 <h3 style={{fontWeight:'bold'}}>Search for a Ride</h3>
                 <h5>Where do you wanna go {user!=null && user.username} ? </h5>

@@ -45,7 +45,7 @@ function Navbar() {
     };
 
     return (
-      <nav style={{color:'white'}} className="wavy-image-back navbar-dashboard" >
+      <nav style={{color:'white',position:'fixed',zIndex:1, width:'100vw',borderBottom:'1px solid white'}} className="wavy-image-back navbar-dashboard" >
         <div 
             style={iconStyle} 
             onMouseOver={() => setIsHovered(true)} 

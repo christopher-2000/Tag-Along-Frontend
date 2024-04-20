@@ -13,26 +13,6 @@ export default function PassRequestListView({data}){
     const [message, setMessage] = useState('');
     const [severity, setSeverity] = useState('success');
 
-    const {handleApproval, changeRefreshRequests} = useContext(RidesContext)
-
-    const handleRequest = async (decision) => {
-        const success = await handleApproval(data.id, decision)
-        
-        console.log(success)
-        if(success) {
-            setSeverity('success');
-            setMessage('Success! The request is processed successfully.');
-            setOpenSnack(true);
-            changeRefreshRequests(true);
-          }
-          if(!success){
-            console.log('Something went wrong:');
-            setSeverity('error');
-            setMessage('Error! Something went wrong.');
-            setOpenSnack(true);
-          }
-    }
-    
     const content = {
         date:data.ride.date,
         from:data.ride.starting_point,
@@ -53,6 +33,12 @@ export default function PassRequestListView({data}){
         request_id:data.id,
         request_status:data.request_status
     }
+    const startDate = new Date(data.ride.starttime);
+    const endDate = new Date(data.ride.endtime);
+    const durationInMillis = endDate.getTime() - startDate.getTime();
+
+    content.duration.hours = Math.floor(durationInMillis / (1000 * 60 * 60));
+    content.duration.minutes = Math.floor((durationInMillis % (1000 * 60 * 60)) / (1000 * 60));
 
     return(
         <>
@@ -63,26 +49,26 @@ export default function PassRequestListView({data}){
                     <div className='fromto'>
                         <div className='from center'>
                             <h5 className='bold'>{content.startTime}</h5>
-                            <h5>Departure</h5>
+                            <h5>{content.from}</h5>
                         </div>
                         <div className='duration center'>
-                            <h6>3H 30M</h6>
+                            <h6>{content.duration.hours}H {content.duration.minutes}M</h6>
                             <h5>{"--->"}</h5>
                         </div>
                         <div className='to center'>
-                            <h5 className='bold'>18:00</h5>
-                            <h5>Arrival</h5>
+                            <h5 className='bold'>{content.endtime}</h5>
+                            <h5>{content.to}</h5>
                         </div>
                     </div>
                     
                     <div className='reqseats center'>
                         <h5 style={{fontWeight:'bold'}}>Requested Seats</h5>
-                        <h5>5</h5>
+                        <h5>{content.requested_seats}</h5>
                     </div>
 
                     <div className='comments'>
                         <h5 style={{fontWeight:'bold' }}>Additional Comments</h5>
-                        <h5>something</h5>
+                        <h5>{content.comments}</h5>
                     </div>
 
                     <StatusTag status={content.request_status} />

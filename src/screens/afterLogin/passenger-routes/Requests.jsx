@@ -8,11 +8,12 @@ export default function Requested(){
     useEffect(()=>{
         fetchMyRideRequests()
     },[]);
+    
     return(
         
         <>
             <br /><br />
-            {myRideRequests.length!==0 && myRideRequests.map((req) => (
+            {myRideRequests.length!==0 && myRideRequests.slice().reverse().filter(req => req.request_status === "Pending" ).map((req) => (
                 <PassRequestListView key={req.id} data={req}/>
             ))}
             

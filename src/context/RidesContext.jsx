@@ -33,7 +33,7 @@ const RidesProvider = ({children}) => {
             "endtime":data.arrivalTime.toISOString().slice(0, 19),
             "price_per_head": parseFloat(data.pricePerHead),
             "available_seats": parseInt(data.seats),
-            "ride_status": "Scheduled",
+            "ride_status": "Active",
             "passengers": []
           }
         

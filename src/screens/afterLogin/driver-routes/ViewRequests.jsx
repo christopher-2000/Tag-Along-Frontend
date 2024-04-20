@@ -43,7 +43,7 @@ export default function ViewRequests({data}) {
 
   return (
     <div>
-      <button style={{margin:'5px', width:'fit-content'}} onClick={handleOpen} ><h5 style={{marginBottom:'0px'}}>View Requests</h5></button>
+      <button style={{margin:'5px', width:'fit-content'}} className="wavy-image-back" onClick={handleOpen} ><h5 style={{marginBottom:'0px'}}>View Requests</h5></button>
       <Modal
         open={open}
         onClose={handleClose}

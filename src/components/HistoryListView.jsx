@@ -3,9 +3,10 @@ import RideRequest from '../screens/afterLogin/RideRequest'
 import './styles/RideListView.css'
 import { calendarOutline } from 'ionicons/icons'
 import StatusTag from './StatusTag'
+import { ContentCutRounded } from '@mui/icons-material'
 
 
-export default function RideListView({data}){
+export default function HistoryListView({data}){
     
     const content = {
         date:data.date,
@@ -73,8 +74,6 @@ export default function RideListView({data}){
                             <h5 className='price'><span style={{color:'green'}}>${content.price}</span> /head</h5>
                         </div>
                     </div>
-
-                    <RideRequest data={content} />
 
                 </div>
             </div>

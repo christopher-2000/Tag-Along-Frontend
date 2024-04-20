@@ -2,17 +2,16 @@
     display: flex;
     width: 500px;
     border: 1px solid rgb(181, 181, 181);
-    padding: 1%;
     border-radius: 10px;
-    transition: box-shadow 0.3s ease-in-out;
+    transition: box-shadow,transform 0.3s ease-in-out;
     cursor: pointer;
     overflow: hidden;
-    height: 150px;
+    height: 130px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   
   .custom-card:hover {
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 10px rgba(9, 178, 234, 0.2);
   }
   
   .custom-card img {
@@ -42,8 +41,8 @@
   }
   
   /* Add hover animation for card */
-  .custom-card:hover .card-image {
-    transform: scale(1.1);
+  .custom-card:hover {
+    transform: scale(1.05);
   }
   
   @media screen and (max-width: 560px) {

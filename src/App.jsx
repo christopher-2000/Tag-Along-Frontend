@@ -14,7 +14,6 @@ import Dashboard from './screens/afterLogin/Dashboard';
 import RootLayout from './screens/afterLogin/RootLayout';
 
 import Active from './screens/afterLogin/driver-routes/Active';
-import Requests from './screens/afterLogin/driver-routes/Requests';
 import History from './screens/afterLogin/driver-routes/History';
 import DriverPortal from './screens/afterLogin/DriverPortal';
 import Passenger from './screens/afterLogin/Passenger';
@@ -42,7 +41,14 @@ const router = createBrowserRouter([
     },
     {
       path:"go",
-      element: (<AuthWrapper><RootLayout /></AuthWrapper>),
+      element: (
+        <AuthWrapper>
+          <TokenRefresher />
+          <RidesProvider>
+            <RootLayout />
+          </RidesProvider>
+        </AuthWrapper>
+        ),
       children:[
         {
           path:'',
@@ -55,10 +61,6 @@ const router = createBrowserRouter([
             {
               element:<Active/>,
               index:true
-            },
-            {
-              path:'requests',
-              element:<Requests/>
             },
             {
               path:'history',
@@ -105,12 +107,9 @@ const router = createBrowserRouter([
 function App() {
   return(
     <AuthProvider>
-      <TokenRefresher />
-      <RidesProvider>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <RouterProvider router={router} />
         </LocalizationProvider>
-      </RidesProvider>
     </AuthProvider>
   )
 }

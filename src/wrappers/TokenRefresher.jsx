@@ -18,7 +18,7 @@ const TokenRefresher = () => {
     // Set up interval to refresh the token every 10 minutes
     const intervalId = setInterval(() => {
       refreshAccessToken();
-    }, 10 * 60 * 1000); // 10 minutes in milliseconds
+    }, 5 * 60 * 1000); // 10 minutes in milliseconds
 
     // Cleanup function to clear the interval when component unmounts
     return () => clearInterval(intervalId);

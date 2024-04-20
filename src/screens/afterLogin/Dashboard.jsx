@@ -32,9 +32,10 @@ export default function Dashboard() {
 
     return (
         <>
-        <div className="dashboard-container city-background"> {/* Apply inline styles */} 
+        <div style={{borderTop:'1px solid white'}} className="dashboard-container wavy-image-back"> {/* Apply inline styles */} 
+            <br /><br /><br />
             <h2 style={{fontWeight:'bold', color:'white'}}>Dashboard</h2> 
-            <br/><br/><br/>
+            <br/>
             <div className="search-box">
                 <h3 style={{fontWeight:'bold'}}>Search for a Ride</h3>
                 <h5>Where do you wanna go {user!=null && user.username} ? </h5>
@@ -57,7 +58,7 @@ export default function Dashboard() {
                     </div>
 
                     <div className="item">
-                        <button>Search Rides</button>
+                        <button className="wavy-image-back" style={{backgroundPosition:'130%'}}>Search Rides</button>
                     </div>
                 </div>
             </div>
@@ -71,7 +72,7 @@ export default function Dashboard() {
 
         </div> */}
         
-        <div className="dashboard-container inline">
+        <div className="dashboard-container inline inline-500">
             <CustomCard 
                 imageSrc={'https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,w_698,h_698/v1684855112/assets/96/4dd3d1-94e7-481e-b28c-08d59353b9e0/original/earner-illustra.png'}
                 title={'Driver Portal'}
@@ -93,6 +94,9 @@ export default function Dashboard() {
             {recentRides.length !== 0 && recentRides.slice().reverse().map(ride => (
                 <RideListView key={ride.id} id={ride.id} data={ride} />
             ))}
+            {
+              recentRides.length == 0 && <h6>No Requests to show</h6>
+            }
 
         </div>
         

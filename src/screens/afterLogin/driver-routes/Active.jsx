@@ -24,6 +24,9 @@ export default function Active(){
             {myrides.length !== 0 && myrides.slice().reverse().filter(ride => ride.ride_status !== "Deleted").map(ride => (
                 <ActiveListView key={ride.id} id={ride.id} data={ride} />
             ))}
+            {
+              myrides.length == 0 && <h6>No Requests to show</h6>
+            }
             
         </div>
     )

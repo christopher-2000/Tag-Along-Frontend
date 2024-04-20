@@ -26,13 +26,20 @@ export default function ViewRequests({data}) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const {rideRequests, fetchRideRequests} = useContext(RidesContext)
+  const {rideRequests, fetchRideRequests , refreshRequests, changeRefreshRequests} = useContext(RidesContext)
 
   useEffect(() => {
     if(open){
       fetchRideRequests(data.id)
     }
   },[open])
+
+  useEffect(() => {
+    if(refreshRequests){
+      fetchRideRequests(data.id)
+      changeRefreshRequests(false)
+    }
+  },[refreshRequests])
 
   return (
     <div>
@@ -66,11 +73,11 @@ export default function ViewRequests({data}) {
                 </div>
             </div> */}
             <div style={{padding:'0% 10%'}}>
-            {rideRequests.length !== 0 && rideRequests.slice().reverse().filter(req => req.status !== "Deleted").map(req => (
+            {rideRequests.length !== 0 && rideRequests.slice().reverse().filter(req => req.request_status === "Pending" ).map(req => (
                 <RequestListView key={req.id} id={req.id} data={req} />
             ))}
             {
-              rideRequests.length == 0 && <h6>No Requests to show</h6>
+              rideRequests.filter(req => req.request_status === "Pending" ).length == 0 && <h6>No Requests to show</h6>
             }
             
             </div>

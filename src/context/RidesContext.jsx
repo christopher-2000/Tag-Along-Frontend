@@ -11,14 +11,16 @@ const RidesProvider = ({children}) => {
     const [recentRides, setRecentRides] = useState([]);
     const [myrides, setMyRides] = useState([])
     const [refreshRides, setRefreshRides] = useState(false);
+    const [refreshRequests, setRefreshRequests] = useState(false);
     const [rideRequests, setRideRequests] = useState([]);          //driver
     const [myrequests, setMyRequests] = useState([]);              //passenger
 
     const changeRefreshRides = (value) => {
       setRefreshRides(value)
     }
-
-
+    const changeRefreshRequests = (value) => {
+      setRefreshRequests(value)
+    }
 
     const createride = async (data) => {
         
@@ -159,7 +161,6 @@ const RidesProvider = ({children}) => {
       }
 
       const fetchRideRequests = async (ride_id) => {
-        console.log('Heree')
         try {
           const req_data = {
             'ride_id':ride_id
@@ -174,8 +175,30 @@ const RidesProvider = ({children}) => {
         }
       }
 
+      const handleApproval = async (request_id, accept) => {
+        
+        try {
+          const req_data = {
+            req_id: request_id
+          }
+
+          if(accept){
+            const response = await axios.post('/api/rides/ride_requests/accept/',req_data, {withCredentials:true});
+            console.log(`Successfully Accepted Ride Request`)
+          }
+          if(!accept){
+            const response = await axios.post('/api/rides/ride_requests/decline/',req_data, {withCredentials:true});
+            console.log(`Successfully Declined Ride Request`)
+          }
+          return true
+        } catch (error) {
+          console.error('Error Creating Ride Request:', error);
+          return false
+        }
+      }
+
     return(
-        <RidesContext.Provider value={{ createride, recentRides, fetchRecentRides, createRideRequest, fetchMyRides, myrides, editRide, deleteRide, refreshRides, changeRefreshRides, rideRequests, fetchRideRequests }}>
+        <RidesContext.Provider value={{ createride, recentRides, fetchRecentRides, createRideRequest, fetchMyRides, myrides, editRide, deleteRide, refreshRides, refreshRequests, changeRefreshRides, changeRefreshRequests, rideRequests, fetchRideRequests, handleApproval }}>
             {children}
         </RidesContext.Provider>
     )

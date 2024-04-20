@@ -93,6 +93,9 @@ export default function Dashboard() {
             {recentRides.length !== 0 && recentRides.slice().reverse().map(ride => (
                 <RideListView key={ride.id} id={ride.id} data={ride} />
             ))}
+            {
+              recentRides.length == 0 && <h6>No Requests to show</h6>
+            }
 
         </div>
         

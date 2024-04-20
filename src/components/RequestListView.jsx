@@ -3,9 +3,35 @@ import RideRequest from '../screens/afterLogin/RideRequest'
 import './styles/RideListView.css'
 import './styles/RequestListView.css'
 import { calendarOutline, checkmarkCircle, closeCircle } from 'ionicons/icons'
+import { useContext, useState } from 'react'
+import { RidesContext } from '../context/RidesContext'
+import CustomSnackbar from './SnackBar'
 
 
 export default function RequestListView({data}){
+    const [openSnack, setOpenSnack] = useState(false);
+    const [message, setMessage] = useState('');
+    const [severity, setSeverity] = useState('success');
+
+    const {handleApproval, changeRefreshRequests} = useContext(RidesContext)
+
+    const handleRequest = async (decision) => {
+        const success = await handleApproval(data.id, decision)
+        
+        console.log(success)
+        if(success) {
+            setSeverity('success');
+            setMessage('Success! The request is processed successfully.');
+            setOpenSnack(true);
+            changeRefreshRequests(true);
+          }
+          if(!success){
+            console.log('Something went wrong:');
+            setSeverity('error');
+            setMessage('Error! Something went wrong.');
+            setOpenSnack(true);
+          }
+    }
     
     return(
         <>
@@ -25,12 +51,18 @@ export default function RequestListView({data}){
                     </div>
 
                     <div className='acceptReject'>
-                        <button className='iconbutton deleteicon' style={{margin:'1%'}}><h5 style={{marginBottom:'0', display:'flex'}}><IonIcon icon={closeCircle} /> Reject</h5></button>
-                        <button className='iconbutton editicon' style={{margin:'1%'}}><h5 style={{marginBottom:'0', display:'flex'}}><IonIcon icon={checkmarkCircle} /> Accept</h5></button>
+                        <button className='iconbutton deleteicon' onClick={() => handleRequest(false)} style={{margin:'1%'}}><h5 style={{marginBottom:'0', display:'flex'}}><IonIcon icon={closeCircle} /> Reject</h5></button>
+                        <button className='iconbutton editicon' onClick={() => handleRequest(true)} style={{margin:'1%'}}><h5 style={{marginBottom:'0', display:'flex'}}><IonIcon icon={checkmarkCircle} /> Accept</h5></button>
                     </div>
 
                 </div>
             </div>
+            <CustomSnackbar
+                open={openSnack}
+                setOpen={setOpenSnack}
+                message={message}
+                severity={severity}
+            />
         </>
     )
 }

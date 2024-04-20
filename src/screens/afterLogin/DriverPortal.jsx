@@ -17,10 +17,10 @@ export default function DriverPortal() {
 
     ]
 
-    const navigate = useNavigate()
 
     return(
         <div className='white-wavy-back'>
+            <br /><br /><br />
             <div className='dashboard-container'>
                 <h2 style={{fontWeight:'bold'}}>
                     Driver Portal

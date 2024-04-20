@@ -9,6 +9,10 @@ const StatusTag = ({ status }) => {
       backgroundColor = '#6FE386'; // Medium Aquamarine
       textColor = '#006400'; // Dark Green
       break;
+    case 'Approved':
+      backgroundColor = '#6FE386'; // Medium Aquamarine
+      textColor = '#006400'; // Dark Green
+      break;
     case 'Completed':
       backgroundColor = '#add8e6'; // Light Blue
       textColor = '#00008b'; // Dark Blue
@@ -17,7 +21,15 @@ const StatusTag = ({ status }) => {
       backgroundColor = '#ffd700'; // Gold
       textColor = '#333'; // Dark Gray
       break;
+    case 'Pending':
+      backgroundColor = '#ffd700'; // Gold
+      textColor = '#333'; // Dark Gray
+      break;
     case 'Deleted':
+      backgroundColor = '#dc143c'; // Crimson
+      textColor = '#fff'; // White
+      break;
+    case 'Declined':
       backgroundColor = '#dc143c'; // Crimson
       textColor = '#fff'; // White
       break;

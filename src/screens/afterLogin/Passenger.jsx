@@ -19,7 +19,7 @@ export default function Passenger(){
         <br /><br /><br />
         <div className='dashboard-container'>
             <h2 style={{fontWeight:'bold'}}>
-                Your Rides
+                Passenger Portal
             </h2>
             
             <br /><br />

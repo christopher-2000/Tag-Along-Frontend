@@ -1,7 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { baseURL } from '../Config';
 import { json } from 'react-router-dom';
 
 const AuthContext = createContext();
@@ -37,7 +36,7 @@ const AuthProvider = ({ children }) => {
         withCredentials: true
       }
     try {
-      const response = await axios.get(baseURL + 'getuserprofile/', config);
+      const response = await axios.get('/api/getuserprofile/', config);
       if (response.data) {
         setIsLoggedIn(true);
         setUser(response.data);
@@ -50,7 +49,7 @@ const AuthProvider = ({ children }) => {
   
   const login = async (email, password) => {
     try {
-      const response = await axios.post(baseURL + 'loginuser/', { email, password }, { withCredentials: true });
+      const response = await axios.post('/api/loginuser/', { email, password }, { withCredentials: true });
       if (response.data.success) {
         setIsLoggedIn(true);
         setUser(response.data.user);
@@ -62,10 +61,24 @@ const AuthProvider = ({ children }) => {
       return false;
     }
   };
+  const signup = async (username, email, password) => {
+    try {
+      const response = await axios.post('/api/createuser/', { username, email, password }, { withCredentials: true });
+      if (response.data.success) {
+        setIsLoggedIn(true);
+        setUser(response.data.user);
+        localStorage.setItem('user',JSON.stringify(response.data.user))
+      }
+      return response.data;
+    } catch (error) {
+      console.error('Signup error:', error);
+      return false;
+    }
+  };
 
   const logout = async () => {
     try {
-      await axios.post(baseURL + 'logoutuser/', null, { withCredentials: true });
+      await axios.post('/api/logoutuser/', null, { withCredentials: true });
       setIsLoggedIn(false);
       setUser(null);
       Cookies.remove('access_token');
@@ -110,7 +123,7 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, user, login, logout, updateUserProfile }}>
+    <AuthContext.Provider value={{ isLoggedIn, user, login,signup, logout, updateUserProfile }}>
       {children}
     </AuthContext.Provider>
   );

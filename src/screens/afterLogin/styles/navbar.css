@@ -16,15 +16,10 @@
     align-items: center;
   }
 
-
-  .sideBarItem:hover{
-    background-color: #219EBC;
+  .activeitem,.sideBarItem:hover{
+    background-image:url('https://i.pinimg.com/736x/09/e2/b2/09e2b2c40b2cb10ace68b65367b14644.jpg');
     font-weight: bold;
-  }
-
-  .activeitem{
-    background-color: #219EBC;
-    font-weight: bold;
+    background-position: 150%;
   }
   
   .brandStyle {

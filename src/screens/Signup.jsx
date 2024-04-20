@@ -1,13 +1,17 @@
 // signup.jsx
-import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from 'react';
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { TextField, Button, Grid, Typography, IconButton, InputAdornment } from '@mui/material';
 import { EmailOutlined, LockOutlined, Visibility, VisibilityOff, PersonOutline } from '@mui/icons-material';
 
 import '../App.css'; 
 import './styles/signup.css'
+import { AuthContext } from '../context/AuthContext';
+import { ArrowBack } from 'react-ionicons';
 
 const SignUp = () => {
+  const navigate = useNavigate()
+  const {signup} = useContext(AuthContext)
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,6 +19,8 @@ const SignUp = () => {
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [usernameError, setUsernameError] = useState(false);
+  const [invalidError, setInvalidError] = useState(false)
+
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -39,7 +45,7 @@ const SignUp = () => {
     event.preventDefault();
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     // Check if username is empty
@@ -79,12 +85,27 @@ const SignUp = () => {
       return; // Exit early if email is invalid
     }
 
+    if (!usernameError && !passwordError && !emailError){
+      console.log('No errors username, email and password');
+      
+      const response = await signup(username, email, password)
+      console.log(response)
+      if(response){
+        navigate('/go')
+      }
+      if (!response){
+        setInvalidError(true)
+      }
+    }
     // Handle form submission logic here
   };
 
   return (
     <div className="sub-container walking-students">
       <div className='form-box'>
+          <div style={{display:'flex', justifyContent:'left'}}>
+            <NavLink to="/"><ArrowBack  /></NavLink>
+          </div>
         <h1>TAG ALONG..</h1>
         <form onSubmit={handleSubmit}>
           <Grid container spacing={2} justifyContent="center">
@@ -162,6 +183,7 @@ const SignUp = () => {
               />
             </Grid>
             {(passwordError || emailError || usernameError) && <p style={{color:'red'}}> Please Fill out all the Required Fields</p>}
+            { (invalidError) && <p style={{color:'red'}}> Invalid Username, Email or Password</p>}
             <Grid item xs={12}>
               <Button type="submit" variant="contained" color="primary" fullWidth>
                 Sign Up
@@ -169,6 +191,7 @@ const SignUp = () => {
             </Grid>
           </Grid>
         </form>
+        
         <p>
           Already have an account? <Link to="/login">Login</Link>
         </p>

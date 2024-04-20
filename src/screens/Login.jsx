@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { TextField, Button, Grid, Typography, IconButton, InputAdornment } from '@mui/material';
-import { EmailOutlined, LockOutlined, PasswordRounded, Visibility, VisibilityOff } from '@mui/icons-material';
+import { ArrowBack, EmailOutlined, LockOutlined, PasswordRounded, Visibility, VisibilityOff } from '@mui/icons-material';
 
 
 import InputField from '../components/InputField';
@@ -72,7 +72,7 @@ const Login = () => {
       setEmailError(true);
       return; // Exit early if email is invalid
     }
-
+    
     // Handle form submission logic here
     if(!emailError && !passwordError){
       console.log('No errors in email and password');
@@ -91,6 +91,9 @@ const Login = () => {
     return (
         <div className="sub-container background-driving">
         <div className='form-box'>
+          <div style={{display:'flex', justifyContent:'left'}}>
+            <NavLink to="/"><ArrowBack  /></NavLink>
+          </div>
         <h1>TAG ALONG..</h1>
         <form onSubmit={handleSubmit}>
       <Grid container spacing={2} justifyContent="center">

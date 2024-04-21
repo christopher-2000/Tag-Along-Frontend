@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import Cookies from 'js-cookie'
 import {useNavigate} from 'react-router-dom'
@@ -21,6 +21,37 @@ export default function Dashboard() {
     const { user, logout } = useContext(AuthContext);
     const {fetchRecentRides, recentRides} = useContext(RidesContext)
 
+    const [searchResults, setSearchResults] = useState([])
+    const [searchData, setSearchData] = useState({
+        from:'',
+        to:'',
+        date:null
+    })
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        console.log(name, value)
+        setSearchData(prevState => ({
+          ...prevState,
+          [name]: value
+        }));
+      };
+    
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        
+        if (recentRides.length !== 0) {
+            const filteredRides = recentRides.filter(ride => {
+              // Perform your date comparison here, assuming searchData.date is the date you want to compare with
+              // Adjust this condition based on how you want to compare the dates
+              return ride.date === searchData.date.toISOString().split('T')[0];
+            });
+          
+            // Update searchResults with the filtered rides
+            setSearchResults([...searchResults, ...filteredRides]);
+          }
+
+    }
+
     const handleLogout = () => {
         // Call the logout function from AuthContext
         logout();
@@ -41,36 +72,44 @@ export default function Dashboard() {
                 <h5>Where do you wanna go {user!=null && user.username} ? </h5>
 
                 <br/>
-                <div className="search-container">
+                <form className="search-container">
         
                     <div className="item">
-                        <TextField id="outlined-basic" label="From" variant="outlined" fullWidth />
+                        <TextField id="outlined-basic" label="From" variant="outlined" onChange={handleChange}  fullWidth required/>
                     </div>
                     
                     <SyncAltIcon style={{ margin: '0px 10px' }} />
 
                     <div className="item">
-                        <TextField id="outlined-basic" label="To" variant="outlined" fullWidth />
+                        <TextField id="outlined-basic" label="To" variant="outlined" onChange={handleChange}  fullWidth required/>
                     </div>
 
                     <div className="item">
-                        <DatePicker label='Date of Travel'  fullWidth />
+                        <DatePicker label='Date of Travel' onChange={(date) => handleChange({target: { name: "date", value: date }})}  fullWidth required/>
                     </div>
 
                     <div className="item">
-                        <button className="wavy-image-back" style={{backgroundPosition:'130%'}}>Search Rides</button>
+                        <button className="wavy-image-back" onClick={handleSubmit} style={{backgroundPosition:'130%'}}>Search Rides</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
 
-        {/* <div className="dashboard-container">
-            <h2 style={{fontWeight:'bold'}}>Search Results</h2>
+        {
+            searchResults.length!==0 && (
+                <div className="dashboard-container">
+                    <h2 style={{fontWeight:'bold'}}>Search Results</h2>
 
-            <br/><br/>
-            
+                    <br/><br/>
+                    {
+                        searchResults.map(ride => 
+                            <RideListView key={ride.id} data={ride} />
+                        )
+                    }
+                </div>
+            )
+        }
 
-        </div> */}
         
         <div className="dashboard-container inline inline-500">
             <CustomCard 
@@ -91,7 +130,7 @@ export default function Dashboard() {
         <div className="dashboard-container">
             <h2 style={{fontWeight:'bold'}}>Most Recent Rides</h2>
 
-            {recentRides.length !== 0 && recentRides.slice().reverse().map(ride => (
+            {recentRides.length !== 0 && recentRides.slice().reverse().filter(ride => ride.ride_status==="Active").map(ride => (
                 <RideListView key={ride.id} id={ride.id} data={ride} />
             ))}
             {

@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { TextField, Button, Grid, Typography, Avatar, IconButton, List, ListItem, ListItemText, Divider } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import './styles/profile.css';
+import ProfileSection from './profile/ProfileSection';
+import CarDetailsSection from './profile/CarDetailsSection';
+import { AuthContext } from '../../context/AuthContext';
 
 export default function Profile() {
+    const {user} = useContext(AuthContext)
     const [isEditingProfile, setIsEditingProfile] = useState(false);
     const [firstName, setFirstName] = useState("John");
     const [lastName, setLastName] = useState("Doe");
-    const [email, setEmail] = useState("john.doe@example.com");
     const [phoneNumber, setPhoneNumber] = useState("123-456-7890");
     const [profilePic, setProfilePic] = useState(null);
     const [profilePicPreview, setProfilePicPreview] = useState('');
@@ -18,7 +21,7 @@ export default function Profile() {
             model: "Tesla Model S",
             licensePlate: "ABC-123",
             seats: 5,
-            mileage: "50,000",
+            mileage: "35",
             color: "Black",
             carType: "Sedan",
             isEditing: false,
@@ -29,7 +32,7 @@ export default function Profile() {
             model: "Ford Mustang",
             licensePlate: "XYZ-789",
             seats: 4,
-            mileage: "40,000",
+            mileage: "15",
             color: "Red",
             carType: "Coupe",
             isEditing: false,
@@ -76,163 +79,34 @@ export default function Profile() {
         }));
     };
 
-    return (
-        <Grid container spacing={2} justifyContent="center">
-            <Grid item xs={12} sm={6} alignItems="center" display="flex" flexDirection="column">
-                <Avatar src={profilePicPreview} alt="Profile" sx={{ width: 120, height: 120 }} />
-                <Typography variant="body1" gutterBottom>
-                    Hello, {firstName} {lastName}!
-                </Typography>
-                <form onSubmit={(e) => {
-                    e.preventDefault();
-                    setIsEditingProfile(!isEditingProfile);
-                }}>
-                    {isEditingProfile && (
-                        <TextField
-                            type="file"
-                            accept="image/*"
-                            onChange={(e) => handleImageChange(e, true)}
-                            fullWidth
-                            variant="outlined"
-                            margin="normal"
-                        />
-                    )}
-                    <TextField
-                        label="First Name"
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                        disabled={!isEditingProfile}
-                    />
-                    <TextField
-                        label="Last Name"
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
-                        disabled={!isEditingProfile}
-                    />
-                    <TextField
-                        label="Email"
-                        type="email"
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        disabled={!isEditingProfile}
-                    />
-                    <TextField
-                        label="Phone Number"
-                        type="tel"
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        value={phoneNumber}
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                        disabled={!isEditingProfile}
-                    />
-                    <Button type="submit" variant="contained" color="primary">
-                        {isEditingProfile ? "Save" : "Edit"} Profile
-                    </Button>
-                </form>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-                <Typography variant="h6">Car Details</Typography>
-                <List>
-                    {cars.map(car => (
-                        <React.Fragment key={car.id}>
-                            <ListItem>
-                                <Grid container alignItems="center" spacing={2}>
-                                    <Grid item xs={4}>
-                                        <Avatar 
-                                            src={car.imageUrl}
-                                            alt={car.model}
-                                            variant="rounded"
-                                            sx={{ width: 100, height: 60, border: '1px solid #ddd' }}
-                                        />
-                                        {car.isEditing && (
-                                            <TextField
-                                                type="file"
-                                                accept="image/*"
-                                                onChange={(e) => handleImageChange(e, false, car.id)}
-                                                fullWidth
-                                                variant="outlined"
-                                                margin="normal"
-                                            />
-                                        )}
-                                    </Grid>
-                                    <Grid item xs={8}>
-                                        {car.isEditing ? (
-                                            <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                                <TextField
-                                                    label="Model"
-                                                    variant="outlined"
-                                                    value={car.model}
-                                                    onChange={(e) => handleCarChange(car.id, 'model', e.target.value)}
-                                                    margin="normal"
-                                                />
-                                                <TextField
-                                                    label="License Plate"
-                                                    variant="outlined"
-                                                    value={car.licensePlate}
-                                                    onChange={(e) => handleCarChange(car.id, 'licensePlate', e.target.value)}
-                                                    margin="normal"
-                                                />
-                                                <TextField
-                                                    label="Seats"
-                                                    type="number"
-                                                    variant="outlined"
-                                                    value={car.seats}
-                                                    onChange={(e) => handleCarChange(car.id, 'seats', parseInt(e.target.value))}
-                                                    margin="normal"
-                                                />
-                                                <TextField
-                                                    label="Mileage"
-                                                    variant="outlined"
-                                                    value={car.mileage}
-                                                    onChange={(e) => handleCarChange(car.id, 'mileage', e.target.value)}
-                                                    margin="normal"
-                                                />
-                                                <TextField
-                                                    label="Color"
-                                                    variant="outlined"
-                                                    value={car.color}
-                                                    onChange={(e) => handleCarChange(car.id, 'color', e.target.value)}
-                                                    margin="normal"
-                                                />
-                                                <TextField
-                                                    label="Car Type"
-                                                    variant="outlined"
-                                                    value={car.carType}
-                                                    onChange={(e) => handleCarChange(car.id, 'carType', e.target.value)}
-                                                    margin="normal"
-                                                />
-                                            </div>
-                                        ) : (
-                                            <>
-                                                <Typography variant="subtitle1">{car.model}</Typography>
-                                                <Typography variant="body2">{car.licensePlate}</Typography>
-                                                <Typography variant="body2">Seats: {car.seats}</Typography>
-                                                <Typography variant="body2">Mileage: {car.mileage}</Typography>
-                                                <Typography variant="body2">Color: {car.color}</Typography>
-                                                <Typography variant="body2">Type: {car.carType}</Typography>
-                                            </>
-                                        )}
-                                        <IconButton onClick={() => toggleCarEdit(car.id)}>
-                                            {car.isEditing ? <SaveIcon /> : <EditIcon />}
-                                        </IconButton>
-                                    </Grid>
-                                </Grid>
-                            </ListItem>
-                            <Divider />
-                        </React.Fragment>
-                    ))}
-                </List>
-            </Grid>
-        </Grid>
-    );
+    return(
+        <>
+            <br />
+            <div className='dashboard-container'>
+                <br /><br /><br />
+            <h2 style={{fontWeight:'bold'}}>Profile</h2>
+            <div className='inline'>
+                <ProfileSection
+                    profilePicPreview={profilePicPreview}
+                    firstName={firstName}
+                    lastName={lastName}
+                    user={user}
+                    phoneNumber={phoneNumber}
+                    isEditingProfile={isEditingProfile}
+                    handleImageChange={handleImageChange}
+                    setFirstName={setFirstName}
+                    setLastName={setLastName}
+                    setPhoneNumber={setPhoneNumber}
+                    setIsEditingProfile={setIsEditingProfile}
+                />
+                <CarDetailsSection
+                    cars={cars}
+                    handleImageChange={handleImageChange}
+                    handleCarChange={handleCarChange}
+                    toggleCarEdit={toggleCarEdit}
+                />
+            </div>
+        </div>
+        </>
+    )
 }

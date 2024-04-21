@@ -31,7 +31,8 @@ export default function EditRide({data}) {
     arrivalTime: null,
     vehicle: '',
     seats: '',
-    pricePerHead: ''
+    pricePerHead: '',
+    status:'Active'
   });
 
   const handleChange = (e) => {
@@ -133,14 +134,31 @@ export default function EditRide({data}) {
                   />
               </div>
 
-              <div>
-                <h5 style={{fontWeight:'bold'}}>Passengers</h5>
-                {data.passengers.map((passenger, id) => (
-                  <div>
-                    <h6><span style={{color:'blue', fontWeight:'bold'}}>{id+1}. {passenger.username}</span><br />Phone: {"+1 2345223412"}</h6>
-                  </div>
-                ))}
-                <br />
+              <div className='responsive-inline'>
+                <div>
+                  <h5 style={{fontWeight:'bold'}}>Passengers</h5>
+                  {data.passengers.length===0 && <h6>No passengers added</h6> }
+                  {data.passengers.map((passenger, id) => (
+                    <div>
+                      <h6><span style={{color:'blue', fontWeight:'bold'}}>{id+1}. {passenger.username}</span><br />Phone: {"+1 2345223412"}</h6>
+                    </div>
+                  ))}
+                  <br />
+                </div>
+                
+                <Autocomplete
+                    disablePortal
+                    id="combo-box-demo"
+                    sx={{width:'50%',m:1}}
+                    options={['Active','Cancelled', 'Completed']}
+                    defaultValue={'Active'}
+                    renderInput={(params) => <TextField {...params} label="Ride Status" name="Ride Status" />}
+                    onChange={(event, value) => setFormData(prevState => ({
+                      ...prevState,
+                      status: value
+                    }))}
+                  />
+
               </div>
               
               <div className='inline-200'>

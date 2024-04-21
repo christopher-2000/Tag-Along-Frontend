@@ -22,6 +22,7 @@ import PassengerHistory from './screens/afterLogin/passenger-routes/History';
 import CreateRide from './screens/afterLogin/CreateRide';
 import Profile from './screens/afterLogin/Profile';
 import { RidesProvider } from './context/RidesContext';
+import SearchRides from './screens/afterLogin/passenger-routes/SearchRides';
 
 
 const router = createBrowserRouter([
@@ -77,8 +78,12 @@ const router = createBrowserRouter([
           path:'passenger',
           element:<Passenger />,
           children:[
-            {
+            { 
               index:true,
+              element:<SearchRides />
+            },
+            {
+              path:'requested',
               element:<Requested/>
             },
             {

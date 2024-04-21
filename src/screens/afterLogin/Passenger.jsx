@@ -5,15 +5,19 @@ import './styles/driverportal.css'
 export default function Passenger(){
     const routes = [
         {
-            text:'Requested',
+            text:'Search',
             path:''
+        },
+        {
+            text:'Requested',
+            path:'requested'
         },
         {
             text:'History',
             path:'history'
         },
-
     ]
+
     return(
         <>
         <br /><br /><br />

@@ -135,6 +135,12 @@ export default function EditRide({data}) {
 
               <div>
                 <h5 style={{fontWeight:'bold'}}>Passengers</h5>
+                {data.passengers.map((passenger, id) => (
+                  <div>
+                    <h6><span style={{color:'blue', fontWeight:'bold'}}>{id+1}. {passenger.username}</span><br />Phone: {"+1 2345223412"}</h6>
+                  </div>
+                ))}
+                <br />
               </div>
               
               <div className='inline-200'>

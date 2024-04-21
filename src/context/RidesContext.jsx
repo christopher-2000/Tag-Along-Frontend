@@ -63,7 +63,7 @@ const RidesProvider = ({children}) => {
         price_per_head: data.pricePerHead !== null && data.pricePerHead !== "" ? parseFloat(data.pricePerHead) : undefined,
         available_seats: data.seats !== null && data.seats !== "" ? parseInt(data.seats) : undefined,
         ride_status: "Active",
-        passengers: []
+        passengers: data.passengers
       };
       
         const req_data = {

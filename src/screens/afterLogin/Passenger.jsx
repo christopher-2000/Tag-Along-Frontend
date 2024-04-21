@@ -5,20 +5,25 @@ import './styles/driverportal.css'
 export default function Passenger(){
     const routes = [
         {
-            text:'Requested',
+            text:'Search',
             path:''
+        },
+        {
+            text:'Requested',
+            path:'requested'
         },
         {
             text:'History',
             path:'history'
         },
-
     ]
+
     return(
         <>
-        <div className='rides-container'>
+        <br /><br /><br />
+        <div className='dashboard-container'>
             <h2 style={{fontWeight:'bold'}}>
-                Your Rides
+                Passenger Portal
             </h2>
             
             <br /><br />

@@ -14,7 +14,6 @@ import Dashboard from './screens/afterLogin/Dashboard';
 import RootLayout from './screens/afterLogin/RootLayout';
 
 import Active from './screens/afterLogin/driver-routes/Active';
-import Requests from './screens/afterLogin/driver-routes/Requests';
 import History from './screens/afterLogin/driver-routes/History';
 import DriverPortal from './screens/afterLogin/DriverPortal';
 import Passenger from './screens/afterLogin/Passenger';
@@ -22,6 +21,8 @@ import Requested from './screens/afterLogin/passenger-routes/Requests';
 import PassengerHistory from './screens/afterLogin/passenger-routes/History';
 import CreateRide from './screens/afterLogin/CreateRide';
 import Profile from './screens/afterLogin/Profile';
+import { RidesProvider } from './context/RidesContext';
+import SearchRides from './screens/afterLogin/passenger-routes/SearchRides';
 
 
 const router = createBrowserRouter([
@@ -41,7 +42,14 @@ const router = createBrowserRouter([
     },
     {
       path:"go",
-      element: (<AuthWrapper><RootLayout /></AuthWrapper>),
+      element: (
+        <AuthWrapper>
+          <TokenRefresher />
+          <RidesProvider>
+            <RootLayout />
+          </RidesProvider>
+        </AuthWrapper>
+        ),
       children:[
         {
           path:'',
@@ -54,10 +62,6 @@ const router = createBrowserRouter([
             {
               element:<Active/>,
               index:true
-            },
-            {
-              path:'requests',
-              element:<Requests/>
             },
             {
               path:'history',
@@ -74,8 +78,12 @@ const router = createBrowserRouter([
           path:'passenger',
           element:<Passenger />,
           children:[
-            {
+            { 
               index:true,
+              element:<SearchRides />
+            },
+            {
+              path:'requested',
               element:<Requested/>
             },
             {
@@ -104,10 +112,9 @@ const router = createBrowserRouter([
 function App() {
   return(
     <AuthProvider>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <TokenRefresher />
-    <RouterProvider router={router} />
-    </LocalizationProvider>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <RouterProvider router={router} />
+        </LocalizationProvider>
     </AuthProvider>
   )
 }

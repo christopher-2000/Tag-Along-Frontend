@@ -31,7 +31,8 @@ export default function ActiveListView({data}){
         duration:{
             hours:0,
             minutes:0
-        }
+        },
+        passengers:data.passengers
     }
     const startDate = new Date(data.starttime);
     const endDate = new Date(data.endtime);

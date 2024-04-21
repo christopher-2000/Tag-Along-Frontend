@@ -63,7 +63,7 @@ export default function PassRequestListView({data}){
                     
                     <div className='reqseats center'>
                         <h5 style={{fontWeight:'bold'}}>Requested Seats</h5>
-                        <h5>{content.requested_seats}</h5>
+                        <h5>{content.seats}</h5>
                     </div>
 
                     <div className='comments'>

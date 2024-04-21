@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import Cookies from 'js-cookie'
 import {useNavigate} from 'react-router-dom'
@@ -6,6 +6,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import SyncAltIcon from '@mui/icons-material/SyncAlt';
+import { useLoadScript, Autocomplete as GoogleAddressAutoComplete } from '@react-google-maps/api';
 
 
 import { TextField, Button, Grid, Typography, IconButton, InputAdornment } from '@mui/material';
@@ -21,12 +22,22 @@ export default function Dashboard() {
     const { user, logout } = useContext(AuthContext);
     const {fetchRecentRides, recentRides} = useContext(RidesContext)
 
+    const fromInputRef = useRef();
+    const toInputRef = useRef();
+
     const [searchResults, setSearchResults] = useState([])
     const [searchData, setSearchData] = useState({
         from:'',
         to:'',
         date:null
     })
+
+    const { isLoaded } = useLoadScript({
+        googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY, // Using Vite's env variable syntax
+        libraries: ['places'],
+    });
+
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         console.log(name, value)
@@ -38,7 +49,7 @@ export default function Dashboard() {
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        
+        console.log(searchData)
         if (recentRides.length !== 0) {
             const filteredRides = recentRides.filter(ride => {
               // Perform your date comparison here, assuming searchData.date is the date you want to compare with
@@ -61,6 +72,29 @@ export default function Dashboard() {
         fetchRecentRides();
       }, []);
 
+      const handleFromPlaceChanged = () => {
+        if (fromInputRef.current) {
+            const place = fromInputRef.current.getPlace();
+            setSearchData(prevState => ({
+                ...prevState,
+                from: place.formatted_address || place.name
+              }));
+        }
+    };
+    
+    const handleToPlaceChanged = () => {
+        if (toInputRef.current) {
+            const place = toInputRef.current.getPlace();
+            setSearchData(prevState => ({
+                ...prevState,
+                to: place.formatted_address || place.name
+              }));
+        }
+    };
+
+    if (!isLoaded) return <div>Loading...</div>;
+
+
     return (
         <>
         <div style={{borderTop:'1px solid white'}} className="dashboard-container wavy-image-back"> {/* Apply inline styles */} 
@@ -75,13 +109,23 @@ export default function Dashboard() {
                 <form className="search-container">
         
                     <div className="item">
+                    <GoogleAddressAutoComplete
+                                onLoad={(autoC) => fromInputRef.current = autoC}
+                                onPlaceChanged={handleFromPlaceChanged}
+                            >
                         <TextField id="outlined-basic" label="From" variant="outlined" onChange={handleChange}  fullWidth required/>
+                        </GoogleAddressAutoComplete>
                     </div>
                     
                     <SyncAltIcon style={{ margin: '0px 10px' }} />
 
                     <div className="item">
+                    <GoogleAddressAutoComplete
+                                onLoad={(autoC) => toInputRef.current = autoC}
+                                onPlaceChanged={handleToPlaceChanged}
+                            >
                         <TextField id="outlined-basic" label="To" variant="outlined" onChange={handleChange}  fullWidth required/>
+                        </GoogleAddressAutoComplete>
                     </div>
 
                     <div className="item">

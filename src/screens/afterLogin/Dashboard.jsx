@@ -25,6 +25,7 @@ export default function Dashboard() {
     const fromInputRef = useRef();
     const toInputRef = useRef();
 
+    const [searched, setSearched] = useState(false)
     const [searchResults, setSearchResults] = useState([])
     const [searchData, setSearchData] = useState({
         from:'',
@@ -54,12 +55,14 @@ export default function Dashboard() {
             const filteredRides = recentRides.filter(ride => {
               // Perform your date comparison here, assuming searchData.date is the date you want to compare with
               // Adjust this condition based on how you want to compare the dates
-              return ride.date === searchData.date.toISOString().split('T')[0];
+              console.log(ride)
+              return ride.date === searchData.date.toISOString().split('T')[0] && ride.ride_status==='Active' && ride.driver.username!==user.username;
             });
           
             // Update searchResults with the filtered rides
             setSearchResults([...searchResults, ...filteredRides]);
           }
+          setSearched(true)
 
     }
 
@@ -113,7 +116,7 @@ export default function Dashboard() {
                                 onLoad={(autoC) => fromInputRef.current = autoC}
                                 onPlaceChanged={handleFromPlaceChanged}
                             >
-                        <TextField id="outlined-basic" label="From" variant="outlined" onChange={handleChange}  fullWidth required/>
+                        <TextField id="outlined-basic" label="From" variant="outlined"  fullWidth required/>
                         </GoogleAddressAutoComplete>
                     </div>
                     
@@ -124,7 +127,7 @@ export default function Dashboard() {
                                 onLoad={(autoC) => toInputRef.current = autoC}
                                 onPlaceChanged={handleToPlaceChanged}
                             >
-                        <TextField id="outlined-basic" label="To" variant="outlined" onChange={handleChange}  fullWidth required/>
+                        <TextField id="outlined-basic" label="To" variant="outlined"  fullWidth required/>
                         </GoogleAddressAutoComplete>
                     </div>
 
@@ -139,6 +142,7 @@ export default function Dashboard() {
             </div>
         </div>
 
+        {searchResults.length ===0 && searched && <h6><br/>No Rides matching your Search</h6>}
         {
             searchResults.length!==0 && (
                 <div className="dashboard-container">
@@ -174,11 +178,22 @@ export default function Dashboard() {
         <div className="dashboard-container">
             <h2 style={{fontWeight:'bold'}}>Most Recent Rides</h2>
 
-            {recentRides.length !== 0 && recentRides.slice().reverse().filter(ride => ride.ride_status==="Active").map(ride => (
-                <RideListView key={ride.id} id={ride.id} data={ride} />
-            ))}
             {
-              recentRides.length == 0 && <h6>No Requests to show</h6>
+                recentRides
+                    .slice()
+                    .reverse()
+                    .filter(ride => ride.ride_status === "Active" && ride.driver.username !== user.username)
+                    .length !== 0 ? (
+                        recentRides
+                            .slice()
+                            .reverse()
+                            .filter(ride => ride.ride_status === "Active" && ride.driver.username !== user.username)
+                            .map(ride => (
+                                <RideListView key={ride.id} id={ride.id} data={ride} />
+                            ))
+                    ) : (
+                        <h6>No Requests to show</h6>
+                    )
             }
 
         </div>

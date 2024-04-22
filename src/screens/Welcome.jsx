@@ -89,12 +89,18 @@ const Welcome = () => {
 
         </section>
 
-        <section className='content dark-blue-back' style={{position:'relative'}}>
-                
-            <h1>Footer</h1>
-            
+        <section className='content dark-blue-back Footer' style={{position:'relative'}}>
+                   
+
+            <h1>Contact Us</h1> <br></br>
+            <p>If you have any questions, please feel free to reach out to us at:</p>
+            <div>Email: <a href="mailto:support@tagalong.com">support@tagalong.com</a></div>
+            <div>Phone: <a href="tel:+11234567890">(123) 456-7890</a></div> <br></br>
 
         </section>
+        <footer style={{marginTop:0, paddingTop:'10px', paddingBottom:'10px', }}>
+            &copy; 2024 TagAlong. All rights reserved.
+            </footer>
         </>
     );
 };

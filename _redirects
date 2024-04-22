@@ -1,2 +1,2 @@
-/api/* https://tagalong-backend-210589d74651.herokuapp.com/api/:splat 200
+/api/* https://tagalong-backend-210589d74651.herokuapp.com/:splat 200
 /* /index.html 200 

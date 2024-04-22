@@ -1,7 +1,7 @@
 [[redirects]]
   from = "/api/*"
   to = "https://tagalong-backend-210589d74651.herokuapp.com/:splat"
-  status = 200
+  status = 301
 [[redirects]]
   from = "/*"
   to = "/index.html"

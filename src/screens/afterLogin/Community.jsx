@@ -14,7 +14,7 @@ export default function Community() {
     );
 }
 
-// Component for displaying rider testimonials and stories
+// Component for displaying rider stories
 function RiderStories() {
     const stories = [
         { id: 1, name: "Alice Johnson", story: "Had a fantastic ride to the airport. The driver was punctual and courteous, making a stressful day much easier!" },

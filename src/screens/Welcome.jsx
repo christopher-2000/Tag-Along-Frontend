@@ -37,7 +37,7 @@ const Welcome = () => {
                 </div>
 
                 <div className='grid-item'>
-                    <img src="/bluecar.png" alt="" />
+                    <img src="./public/bluecar.png" alt="" />
                 </div>
 
             </div>
@@ -46,7 +46,7 @@ const Welcome = () => {
 
         <section id={'home'} className='content inline'>
                 <div className='grid-item'>
-                    <img src="/upper-photo.png" alt="" />
+                    <img src="./public/upper-photo.png" alt="" />
                 </div>
                 <div className='grid-item'>
                     <h1>
@@ -77,7 +77,7 @@ const Welcome = () => {
                 </div>
 
                 <div className='grid-item'>
-                    <img src="/lower-photo.png" alt="" />
+                    <img src="./public/lower-photo.png" alt="" />
                 </div>
 
         </section>
@@ -85,7 +85,7 @@ const Welcome = () => {
         <section id='devteam' className='content orange-back'>
                 
             <h1>Meet the Team</h1>
-            <img src="/developers.png" style={{position:'relative'}} alt="" />
+            <img src="./public/developers.png" style={{position:'relative'}} alt="" />
 
         </section>
 

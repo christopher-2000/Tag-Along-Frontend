@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
@@ -29,83 +29,88 @@ import SearchRides from './screens/afterLogin/passenger-routes/SearchRides';
 const router = createBrowserRouter([
   
     {
-      path: "/",
-      index:true,
-      element: <Welcome />,
-    },
-    {
-      path: "login",
-      element: <Login />,
-    },
-    {
-      path: "signup",
-      element: <SignUp />,
-    },
-    {
-      path:"go",
-      element: (
-        <AuthWrapper>
-          <TokenRefresher />
-          <RidesProvider>
-            <RootLayout />
-          </RidesProvider>
-        </AuthWrapper>
-        ),
+      path:'/staticfiles/',
+      element:<Outlet />,
       children:[
         {
-          path:'',
-          element:<Dashboard/>
+          index:true,
+          element: <Welcome />,
         },
         {
-          path:'driver',
-          element:<DriverPortal/>,
+          path: "login",
+          element: <Login />,
+        },
+        {
+          path: "signup",
+          element: <SignUp />,
+        },
+        {
+          path:"go",
+          element: (
+            <AuthWrapper>
+              <TokenRefresher />
+              <RidesProvider>
+                <RootLayout />
+              </RidesProvider>
+            </AuthWrapper>
+            ),
           children:[
             {
-              element:<Active/>,
-              index:true
+              path:'',
+              element:<Dashboard/>
             },
             {
-              path:'history',
-              element:<History />
-
-            }
+              path:'driver',
+              element:<DriverPortal/>,
+              children:[
+                {
+                  element:<Active/>,
+                  index:true
+                },
+                {
+                  path:'history',
+                  element:<History />
+    
+                }
+              ]
+            },
+            {
+              path:'create-ride',
+              element:<CreateRide/>,
+            },
+            {
+              path:'passenger',
+              element:<Passenger />,
+              children:[
+                { 
+                  index:true,
+                  element:<SearchRides />
+                },
+                {
+                  path:'requested',
+                  element:<Requested/>
+                },
+                {
+                  path:'history',
+                  element:<PassengerHistory />
+                }
+              ]
+            },
+            {
+              path:'profile',
+              element:<Profile />
+            },
+            {
+              path:'community',
+              element:<Community />
+            },
+            {
+              path:'reviews',
+              element:<Dashboard/>
+            },
+    
           ]
-        },
-        {
-          path:'create-ride',
-          element:<CreateRide/>,
-        },
-        {
-          path:'passenger',
-          element:<Passenger />,
-          children:[
-            { 
-              index:true,
-              element:<SearchRides />
-            },
-            {
-              path:'requested',
-              element:<Requested/>
-            },
-            {
-              path:'history',
-              element:<PassengerHistory />
-            }
-          ]
-        },
-        {
-          path:'profile',
-          element:<Profile />
-        },
-        {
-          path:'community',
-          element:<Community />
-        },
-        {
-          path:'reviews',
-          element:<Dashboard/>
-        },
-
+        }
       ]
     }
 ]);

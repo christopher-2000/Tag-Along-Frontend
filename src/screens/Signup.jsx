@@ -91,7 +91,7 @@ const SignUp = () => {
       const response = await signup(username, email, password)
       console.log(response)
       if(response){
-        navigate('/go')
+        navigate('/staticfiles/go')
       }
       if (!response){
         setInvalidError(true)
@@ -104,7 +104,7 @@ const SignUp = () => {
     <div className="sub-container walking-students">
       <div className='form-box'>
           <div style={{display:'flex', justifyContent:'left'}}>
-            <NavLink to="/"><ArrowBack  /></NavLink>
+            <NavLink to="/staticfiles/"><ArrowBack  /></NavLink>
           </div>
         <h1>TAG ALONG..</h1>
         <form onSubmit={handleSubmit}>

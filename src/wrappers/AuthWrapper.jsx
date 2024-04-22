@@ -9,7 +9,7 @@ const AuthWrapper = ({ children }) => {
   useEffect(() => {
     if (!isLoggedIn) {
       // If user is not logged in, navigate to the login page
-      navigate('/login');
+      navigate('/staticfiles/login');
     }
   }, [isLoggedIn, navigate]);
 

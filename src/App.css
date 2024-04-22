@@ -214,3 +214,7 @@ button:hover {
 .modal-backdrop{
   z-index: 1000;
 }
+
+#fromField, #toField{
+  width: 100%;
+}

@@ -116,7 +116,7 @@ if (!isLoaded) return <div>Loading...</div>;
       onLoad={(autoC) => fromInputRef.current = autoC}
       onPlaceChanged={handleFromPlaceChanged}
     >
-      <TextField id="outlined-basic" label="From" variant="outlined" onChange={handleChange} sx={{ width: '100%' }} fullWidth required/>
+      <TextField id="fromField" label="From" variant="outlined" onChange={handleChange} sx={{ width: '100%' }} fullWidth required/>
     </GoogleAddressAutoComplete>
     
     <SyncAltIcon style={{ margin: '10px 10px' }} />
@@ -125,7 +125,7 @@ if (!isLoaded) return <div>Loading...</div>;
         onLoad={(autoC) => toInputRef.current = autoC}
         onPlaceChanged={handleToPlaceChanged}
     >
-      <TextField id="outlined-basic" label="To" variant="outlined" name='to' onChange={handleChange} sx={{ width: '100%' }} fullWidth required />
+      <TextField id="toField" label="To" variant="outlined" name='to' onChange={handleChange} sx={{ width: '100%' }} fullWidth required />
     </GoogleAddressAutoComplete>
   </div>
 

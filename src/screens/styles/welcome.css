@@ -49,3 +49,34 @@ header img{
     text-align: left;
 }
 
+/* General footer styling */
+footer {
+    background-color: #2a9df4; /* Dark blue background for footer */
+    color: #ffffff; /* White text color */
+    font-size: 14px; /* Standard footer text size */
+    text-align: center; /* Center the text inside the footer */
+    padding: 20px 0; /* Padding for top and bottom */
+    margin-top: 40px; /* Space between the content and footer */
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Font style */
+}
+
+/* Enhancing links within the footer for better interactivity */
+footer a {
+    color: #aad3ea; /* Light blue links for contrast */
+    text-decoration: none; /* No underline to keep it clean */
+}
+
+footer a:hover, footer a:focus {
+    text-decoration: underline; /* Underline on hover/focus for clarity */
+    color: #ffffff; /* White color for hover effect */
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 768px) {
+    footer {
+        font-size: 12px; /* Smaller text on smaller screens */
+        padding: 15px 0; /* Less padding on smaller screens */
+    }
+}
+

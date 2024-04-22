@@ -1,0 +1,28 @@
+
+.reqseats, .comments {
+    width:20%;
+    padding:auto;
+    margin:1%
+}
+.comments{
+    width: 40%;
+}
+
+.acceptReject{
+    display:flex;
+    width:25%;
+    height:10%;
+}
+
+
+@media screen and (max-width: 1125px) {
+    .reqseats, .comments, .acceptReject {
+        width:100%;
+        margin-bottom: 2%;
+    }
+    .comments,.acceptReject{
+       margin: auto;
+    }
+    
+
+}

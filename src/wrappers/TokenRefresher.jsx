@@ -1,14 +1,12 @@
 import { useEffect } from 'react';
 import axios from 'axios';
-import { baseURL } from '../Config';
 
 const TokenRefresher = () => {
   // Function to refresh the token
   const refreshAccessToken = async () => {
       
     try {
-
-      await axios.post(baseURL+ 'refresh-token/', null, {withCredentials:true});
+      await axios.post('/api/refresh-token/', null, {withCredentials:true});
       
       console.log('Token refreshed successfully');
     } catch (error) {
@@ -20,7 +18,7 @@ const TokenRefresher = () => {
     // Set up interval to refresh the token every 10 minutes
     const intervalId = setInterval(() => {
       refreshAccessToken();
-    }, 14 * 60 * 1000); // 10 minutes in milliseconds
+    }, 5 * 60 * 1000); // 10 minutes in milliseconds
 
     // Cleanup function to clear the interval when component unmounts
     return () => clearInterval(intervalId);

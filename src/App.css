@@ -78,8 +78,17 @@
   width: 100%;
   height: 100%;
 }
+.wavy-image-back{
+  background-image: url('https://i.pinimg.com/736x/09/e2/b2/09e2b2c40b2cb10ace68b65367b14644.jpg');
+}
+.white-wavy-back{
+  background-image:url('https://img.freepik.com/free-vector/paper-style-white-monochrome-background_52683-66443.jpg')
+}
 .translucent{
   opacity: 0.5;
+}
+.transparent-bg{
+  background-color: transparent;
 }
 
 .inline{
@@ -100,6 +109,10 @@
   justify-content: center;
   align-items: center;
   place-items: center;
+}
+
+.inline-500{
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
 }
 
 .responsive-inline{
@@ -154,20 +167,54 @@ button:hover {
   width: 80%;
 }
 
-.deleteicon{
+.iconbutton{
+  display: flex;
   border: 1px solid rgb(255, 255, 255);
-  padding: 0.5%;
+  padding: 5%;
   border-radius: 5px;
   background-color: white;
+  width: fit-content;
+  transition: background 0.3s ease;
+  align-items: center;
+}
+
+.deleteicon{
   color: red;
   border: 1px solid red;
-  width: fit-content;
-  padding-bottom: 0;
-  transition: background 0.3s ease;
 }
 
 .deleteicon:hover{
   background-color: red;
   color: white;
   border: 1px solid red;
+}
+
+.editicon{
+  color: rgb(6, 34, 158);
+  border: 1px solid rgb(6, 34, 158);
+}
+
+.editicon:hover{
+  background-color: rgb(6, 34, 158);
+  color: white;
+  border: 1px solid rgb(6, 34, 158);
+}
+
+
+.pac-container {
+  background-color: #FFF;
+  z-index: 2001;
+  position: fixed;
+  display: inline-block;
+}
+
+.modal{
+  z-index: 2000;
+}
+.modal-backdrop{
+  z-index: 1000;
+}
+
+#fromField, #toField{
+  width: 100%;
 }

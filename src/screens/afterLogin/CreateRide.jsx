@@ -28,10 +28,7 @@ export default function CreateRide() {
   const fromInputRef = useRef();
   const toInputRef = useRef();
 
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY, // Using Vite's env variable syntax
-    libraries: ['places'],
-  });
+  
 
   const [formData, setFormData] = useState({
     from: '',
@@ -57,7 +54,7 @@ export default function CreateRide() {
   const handleSubmit = async (e) => {                                                                 
     e.preventDefault();                                                                                
     // Here you can implement the logic to post the ride data to your backend or handle it as needed  
-      
+      console.log(formData)
       const success = await createride(formData)
       if(success) {
         handleClose();
@@ -77,7 +74,7 @@ export default function CreateRide() {
   const handleFromPlaceChanged = () => {
     if (fromInputRef.current) {
         const place = fromInputRef.current.getPlace();
-        setSearchData(prevState => ({
+        setFormData(prevState => ({
             ...prevState,
             from: place.formatted_address || place.name
           }));
@@ -87,14 +84,12 @@ export default function CreateRide() {
 const handleToPlaceChanged = () => {
     if (toInputRef.current) {
         const place = toInputRef.current.getPlace();
-        setSearchData(prevState => ({
+        setFormData(prevState => ({
             ...prevState,
             to: place.formatted_address || place.name
           }));
     }
 };
-
-if (!isLoaded) return <div>Loading...</div>;
 
   return (
     <div>
@@ -117,7 +112,7 @@ if (!isLoaded) return <div>Loading...</div>;
         onLoad={(autoC) => fromInputRef.current = autoC}
         onPlaceChanged={handleFromPlaceChanged}
       >
-        <TextField id="fromField" label="From" variant="outlined" onChange={handleChange} sx={{ width: '100%' }} fullWidth required/>
+        <TextField id="fromField" label="From" variant="outlined" sx={{ width: '100%' }} fullWidth required/>
       </GoogleAddressAutoComplete>
     </div>
     
@@ -128,7 +123,7 @@ if (!isLoaded) return <div>Loading...</div>;
           onLoad={(autoC) => toInputRef.current = autoC}
           onPlaceChanged={handleToPlaceChanged}
       >
-        <TextField id="toField" label="To" variant="outlined" name='to' onChange={handleChange} sx={{ width: '100%' }} fullWidth required />
+        <TextField id="toField" label="To" variant="outlined" name='to' sx={{ width: '100%' }} fullWidth required />
       </GoogleAddressAutoComplete>
     </div>
   </div>
@@ -178,7 +173,7 @@ if (!isLoaded) return <div>Loading...</div>;
   </div>
 </form>
 
-          </div>
+    </div>
       </Modal>
       <CustomSnackbar
         open={openSnack}

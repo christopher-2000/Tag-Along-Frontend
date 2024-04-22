@@ -9,7 +9,15 @@
     background-color: white;
 }
 .ride-list-view h5{
-    font-size: 1.1rem;
+    font-size: 1rem;
+
+}
+.from, .to{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.duration{
+    width: 50%;
 }
 
 .ridelist-body{
@@ -26,7 +34,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 40%;
+    width: 50%;
 }
 .seatrate{
     display: flex;

@@ -21,6 +21,7 @@ import Requested from './screens/afterLogin/passenger-routes/Requests';
 import PassengerHistory from './screens/afterLogin/passenger-routes/History';
 import CreateRide from './screens/afterLogin/CreateRide';
 import Profile from './screens/afterLogin/Profile';
+import Community from './screens/afterLogin/Community';
 import { RidesProvider } from './context/RidesContext';
 import SearchRides from './screens/afterLogin/passenger-routes/SearchRides';
 
@@ -98,7 +99,7 @@ const router = createBrowserRouter([
         },
         {
           path:'community',
-          element:<Dashboard/>
+          element:<Community />
         },
         {
           path:'reviews',
@@ -108,6 +109,7 @@ const router = createBrowserRouter([
       ]
     }
 ]);
+
 
 function App() {
   return(

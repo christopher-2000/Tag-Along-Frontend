@@ -3,9 +3,10 @@ import './styles/community.css'; // Import the CSS file
 
 export default function Community() {
     return (
-        <div className='community-container'>
+        <div className='dashboard-container'>
+            <br /><br /><br />
             <h1>Welcome to Our Community Hub</h1>
-            <div className="content">
+            <div className="content-community">
                 <RiderStories />
                 <ForumSection />
                 <UpdatesSection />
@@ -23,7 +24,7 @@ function RiderStories() {
     ];
 
     return (
-        <section>
+        <section className='community-section'>
             <h2>Rider Stories</h2>
             <div className='rider-stories'>
                 {stories.map((story) => (
@@ -43,7 +44,7 @@ function ForumSection() {
     const slackInviteLink = "https://join.slack.com/t/tagalongdiscu-q8m1415/shared_invite/zt-2h6w4c4t2-7N6TJO2FG8IxfzCayI~RAQ";
 
     return (
-        <section>
+        <section className='community-section'>
             <h2>Forums and Discussions</h2>
             <p>Join the discussions on our latest topics in our dedicated Slack channels.</p>
             <a href={slackInviteLink} target="_blank" rel="noopener noreferrer" className="slack-invite-button">
@@ -56,7 +57,7 @@ function ForumSection() {
 // Component for updates and announcements
 function UpdatesSection() {
     return (
-        <section>
+        <section className='community-section'>
             <h2>Updates and Announcements</h2>
             <ul>
                 <li>New app features coming this Fall!</li>

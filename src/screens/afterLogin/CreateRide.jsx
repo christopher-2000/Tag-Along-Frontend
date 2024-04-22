@@ -112,21 +112,25 @@ if (!isLoaded) return <div>Loading...</div>;
 
           <form onSubmit={handleSubmit}>
   <div className='responsive-inline' style={{flex:1}}>
-    <GoogleAddressAutoComplete
-      onLoad={(autoC) => fromInputRef.current = autoC}
-      onPlaceChanged={handleFromPlaceChanged}
-    >
-      <TextField id="fromField" label="From" variant="outlined" onChange={handleChange} sx={{ width: '100%' }} fullWidth required/>
-    </GoogleAddressAutoComplete>
+    <div style={{width:'100%'}}>
+      <GoogleAddressAutoComplete
+        onLoad={(autoC) => fromInputRef.current = autoC}
+        onPlaceChanged={handleFromPlaceChanged}
+      >
+        <TextField id="fromField" label="From" variant="outlined" onChange={handleChange} sx={{ width: '100%' }} fullWidth required/>
+      </GoogleAddressAutoComplete>
+    </div>
     
     <SyncAltIcon style={{ margin: '10px 10px' }} />
 
-    <GoogleAddressAutoComplete
-        onLoad={(autoC) => toInputRef.current = autoC}
-        onPlaceChanged={handleToPlaceChanged}
-    >
-      <TextField id="toField" label="To" variant="outlined" name='to' onChange={handleChange} sx={{ width: '100%' }} fullWidth required />
-    </GoogleAddressAutoComplete>
+    <div style={{width:'100%'}}>
+      <GoogleAddressAutoComplete
+          onLoad={(autoC) => toInputRef.current = autoC}
+          onPlaceChanged={handleToPlaceChanged}
+      >
+        <TextField id="toField" label="To" variant="outlined" name='to' onChange={handleChange} sx={{ width: '100%' }} fullWidth required />
+      </GoogleAddressAutoComplete>
+    </div>
   </div>
 
   <div className='responsive-inline'>

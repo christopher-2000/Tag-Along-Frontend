@@ -1,7 +1,9 @@
 import { Autocomplete, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material';
 import { DatePicker, TimePicker } from '@mui/x-date-pickers';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState,useRef } from 'react';
 import SyncAltIcon from '@mui/icons-material/SyncAlt';
+import { useLoadScript, Autocomplete as GoogleAddressAutoComplete } from '@react-google-maps/api';
+
 
 import './styles/createride.css'
 import './styles/dashboard.css'
@@ -22,6 +24,14 @@ export default function CreateRide() {
   const handleClose = () => setOpen(false);
 
   const { createride,changeRefreshRides } = useContext(RidesContext);
+
+  const fromInputRef = useRef();
+  const toInputRef = useRef();
+
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY, // Using Vite's env variable syntax
+    libraries: ['places'],
+  });
 
   const [formData, setFormData] = useState({
     from: '',
@@ -64,6 +74,28 @@ export default function CreateRide() {
       }
   };
 
+  const handleFromPlaceChanged = () => {
+    if (fromInputRef.current) {
+        const place = fromInputRef.current.getPlace();
+        setSearchData(prevState => ({
+            ...prevState,
+            from: place.formatted_address || place.name
+          }));
+    }
+};
+
+const handleToPlaceChanged = () => {
+    if (toInputRef.current) {
+        const place = toInputRef.current.getPlace();
+        setSearchData(prevState => ({
+            ...prevState,
+            to: place.formatted_address || place.name
+          }));
+    }
+};
+
+if (!isLoaded) return <div>Loading...</div>;
+
   return (
     <div>
       <button onClick={handleOpen}  className="button-centralized wavy-image-back" style={{backgroundPosition:'120%'}} ><h2 className='bold'>+ Create Ride</h2></button>
@@ -79,10 +111,22 @@ export default function CreateRide() {
           <h2 style={{fontWeight:'bold'}}>Create Ride</h2>
 
           <form onSubmit={handleSubmit}>
-  <div className='responsive-inline'>
-    <TextField id="outlined-basic" label="From" variant="outlined" name='from' onChange={handleChange} fullWidth required />
+  <div className='responsive-inline' style={{flex:1}}>
+    <GoogleAddressAutoComplete
+      onLoad={(autoC) => fromInputRef.current = autoC}
+      onPlaceChanged={handleFromPlaceChanged}
+    >
+      <TextField id="fromField" label="From" variant="outlined" onChange={handleChange} sx={{ width: '100%' }} fullWidth required/>
+    </GoogleAddressAutoComplete>
+    
     <SyncAltIcon style={{ margin: '10px 10px' }} />
-    <TextField id="outlined-basic" label="To" variant="outlined" name='to' onChange={handleChange} fullWidth required />
+
+    <GoogleAddressAutoComplete
+        onLoad={(autoC) => toInputRef.current = autoC}
+        onPlaceChanged={handleToPlaceChanged}
+    >
+      <TextField id="toField" label="To" variant="outlined" name='to' onChange={handleChange} sx={{ width: '100%' }} fullWidth required />
+    </GoogleAddressAutoComplete>
   </div>
 
   <div className='responsive-inline'>

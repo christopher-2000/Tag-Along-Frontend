@@ -199,3 +199,22 @@ button:hover {
   color: white;
   border: 1px solid rgb(6, 34, 158);
 }
+
+
+.pac-container {
+  background-color: #FFF;
+  z-index: 2001;
+  position: fixed;
+  display: inline-block;
+}
+
+.modal{
+  z-index: 2000;
+}
+.modal-backdrop{
+  z-index: 1000;
+}
+
+#fromField, #toField{
+  width: 100%;
+}

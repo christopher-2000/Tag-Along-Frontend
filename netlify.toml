@@ -1,5 +1,5 @@
 [[redirects]]
   from = "/api/*"
-  to = "https://tagalong-backend-210589d74651.herokuapp.com/:splat"
+  to = "https://tagalong-backend-210589d74651.herokuapp.com:splat"
   status = 200
   force = true

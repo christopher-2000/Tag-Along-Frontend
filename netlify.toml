@@ -3,3 +3,7 @@
   to = "https://tagalong-backend-210589d74651.herokuapp.com/api/:splat"
   status = 200
   force = true
+[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 200

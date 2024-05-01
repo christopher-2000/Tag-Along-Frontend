@@ -14,4 +14,4 @@ TAG Along is a cost-effective ride-sharing initiative designed to connect people
 
 To experience the benefits of ride-sharing and contribute to a greener, more connected community, visit the deployed TAG Along application:
 
-[tagalong2024.netlify.app](https://tagalong-rides.herokuapp.com)
+[tagalong2024.netlify.app](https://tagalong2024.netlify.app)
